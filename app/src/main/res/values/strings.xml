@@ -2,9 +2,9 @@
     <string name="app_name">Retromode_App</string>
     <string name="label_usuario">Correo Electrónico</string>
     <string name="label_password">Contraseña</string>
-    <string name="label_start_session">INICIAR SESIÓN</string>
-    <string name="label_nuevoUser"><b>Crear cuenta</b></string>
-    <string name="label_olvide_password">Olvidé mi contraseña</string>
+    <string name="label_inicio_sesion">INICIAR SESIÓN</string>
+    <string name="label_nuevoUsuario"><b>Crear cuenta</b></string>
+    <string name="label_olvide_contra">Olvidé mi contraseña</string>
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
