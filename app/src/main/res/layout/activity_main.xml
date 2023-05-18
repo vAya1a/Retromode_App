@@ -79,7 +79,7 @@
         android:layout_marginBottom="230dp"
         android:background="@drawable/bg_gradient"
         android:fontFamily="@font/trueno"
-        android:text="Iniciar sesión"
+        android:text="@string/label_start_session"
         android:textColor="@color/white"
         android:textStyle="normal" />
 
@@ -117,13 +117,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:drawableEnd="@drawable/ic_crearcuenta"
-            android:drawableTint="@color/light_purple"
             android:fontFamily="@font/trueno"
             android:gravity="center|center_horizontal"
             android:text="@string/label_nuevoUser"
             android:textColor="@color/light_purple"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:drawableTint="@color/light_purple"
+            app:drawableEndCompat="@drawable/ic_crearcuenta" />
 
     </LinearLayout>
 
