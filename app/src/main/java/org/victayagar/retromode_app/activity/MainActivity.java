@@ -1,18 +1,16 @@
-package org.victayagar.retromode_app;
+package org.victayagar.retromode_app.activity;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.victayagar.retromode_app.R;
+
 public class MainActivity extends AppCompatActivity {
 
     VideoView videoLogin;
-    MediaPlayer intro;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         videoLogin = findViewById(R.id.videoLogin);
-        intro = MediaPlayer.create(this, R.raw.intro);
-
-        intro.start();
 
         String ruta ="android.resource://org.victayagar.retromode_app/"+R.raw.login;
         Uri u = Uri.parse(ruta);

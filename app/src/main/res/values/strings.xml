@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Retromode_App</string>
-    <string name="label_usuario">Correo Electrónico</string>
+    <string name="app_name">Retromode</string>
+    <string name="label_usuario">Correo electrónico</string>
     <string name="label_password">Contraseña</string>
     <string name="label_inicio_sesion">INICIAR SESIÓN</string>
     <string name="label_nuevoUsuario"><b>Crear cuenta</b></string>
@@ -8,18 +8,18 @@
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Alexander Fuentes Medina</string>
-    <string name="nav_header_subtitle">afuentes@live.com</string>
+    <string name="nav_header_title">Persona Ejemplo</string>
+    <string name="nav_header_subtitle">personaejemplo@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Cerrar Sesión</string>
-    <string name="descripcion_platillo">Esta rica ensalada norteña viene acompañada con su rica
-        lechuga, tomates, cebollas, choclos fresca, además incluye su buen refrescos para acompañar este exquisito
-        platillo preparado por nuestros grandes chef norteños del Perú.</string>
+    <string name="action_settings">Cerrar sesión</string>
+    <string name="descripcion_producto">Esta increíble sudadera de Adidas combina estilo y comodidad en una sola prenda.
+        Confeccionada con materiales de alta calidad, esta sudadera es perfecta
+        para cualquier ocasión. Su diseño retro y sofisticado hará que destaque entre la multitud.</string>
 
     <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Mis Compras</string>
+    <string name="menu_gallery">Mis compras</string>
     <string name="menu_slideshow">Configuración</string>
-    <string name="add_shop">Añadir al Carrito</string>
+    <string name="add_shop">Añadir al carrito</string>
     <string name="comprar_p">Comprar</string>
     <string-array name="tipoDoc">
         <item>DNI</item>
