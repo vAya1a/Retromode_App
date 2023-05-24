@@ -47,6 +47,7 @@ public class DetallePedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
     public void addOne() {
         this.cantidad++;
     }

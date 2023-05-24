@@ -19,9 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ConfigApi {
     public static final String baseUrlE = "http://10.0.2.2:9090";
     private static Retrofit retrofit;
-    private static String token="";
+    private static String token = "";
     private static UsuarioApi usuarioApi;
-    
+
     static {
         initClient();
     }
@@ -54,13 +54,13 @@ public class ConfigApi {
         return builder.build();
     }
 
-    public static void setToken(String value){
+    public static void setToken(String value) {
         token = value;
         initClient();
     }
 
     public static UsuarioApi getUsuarioApi() {
-        if(usuarioApi == null) {
+        if (usuarioApi == null) {
             usuarioApi = retrofit.create(UsuarioApi.class);
         }
         return usuarioApi;

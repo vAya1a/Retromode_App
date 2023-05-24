@@ -19,5 +19,5 @@ public interface UsuarioApi {
     Call<GenericResponse<Usuario>> login(@Field("email") String email, @Field("pass") String contra);
 
     @POST(base)
-    Call<GenericResponse<Usuario>> save (@Body Usuario u);
+    Call<GenericResponse<Usuario>> save(@Body Usuario u);
 }

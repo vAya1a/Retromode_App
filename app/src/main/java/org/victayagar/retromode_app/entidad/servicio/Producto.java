@@ -77,7 +77,11 @@ public class Producto {
         this.vigencia = vigencia;
     }
 
-    public String getMarca() { return marca; }
+    public String getMarca() {
+        return marca;
+    }
 
-    public void setMarca(String marca) {this.marca = marca;}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 }
