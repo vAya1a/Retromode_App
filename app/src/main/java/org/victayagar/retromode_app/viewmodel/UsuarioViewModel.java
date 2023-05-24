@@ -11,9 +11,7 @@ import org.victayagar.retromode_app.entidad.servicio.Usuario;
 import org.victayagar.retromode_app.repositorio.UsuarioRepositorio;
 
 public class UsuarioViewModel extends AndroidViewModel {
-
     private final UsuarioRepositorio repositorio;
-
     public UsuarioViewModel(@NonNull Application application) {
         super(application);
         this.repositorio = UsuarioRepositorio.getInstance();

@@ -1,6 +1,7 @@
 package org.victayagar.retromode_app.entidad.servicio;
 
 public class DetallePedido {
+
     private int id;
     private int cantidad;
     private Double precio;
@@ -46,7 +47,6 @@ public class DetallePedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-
     public void addOne() {
         this.cantidad++;
     }
@@ -58,4 +58,5 @@ public class DetallePedido {
     public double getTotal() {
         return this.cantidad * this.precio;
     }
+
 }

@@ -1,4 +1,4 @@
-package org.victayagar.retromode_app.activity;
+package org.victayagar.retromode_app;
 
 import android.app.Application;
 import android.content.Context;
@@ -32,13 +32,7 @@ public class App extends Application {
 
         @Override
         public Iterable<DumperPlugin> get() {
-            /*
-            ArrayList<DumperPlugin> plugins = new ArrayList<>();
-            for (DumperPlugin dp : Stetho.defaultDumperPluginsProvider(context).get()) {
-                plugins.add(dp);
-            }
 
-            return plugins;*/
             return Stetho.defaultDumperPluginsProvider(context).get();
         }
     }
