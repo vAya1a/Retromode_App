@@ -13,6 +13,7 @@
     <color name="light_purple">#FFD6BDDA</color>
     <color name="dark_purple">#791e74</color>
     <color name="morado">#6c3f6a</color>
+    <color name="morado_oscuro">#471144</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFD6BDDA</color>
 </resources>
