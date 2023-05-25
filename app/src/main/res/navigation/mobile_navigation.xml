@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_inicio">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="org.victayagar.retromode_app.activity.ui.home.HomeFragment"
+        android:id="@+id/nav_inicio"
+        android:name="org.victayagar.retromode_app.activity.ui.inicio.InicioFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_inicio" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="org.victayagar.retromode_app.activity.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_miscompras"
+        android:name="org.victayagar.retromode_app.activity.ui.compras.MisComprasFragment"
+        android:label="@string/menu_compras"
+        tools:layout="@layout/fragment_miscompras" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="org.victayagar.retromode_app.activity.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_configuracion"
+        android:name="org.victayagar.retromode_app.activity.ui.configuracion.ConfiguracionFragment"
+        android:label="@string/menu_configuracion"
+        tools:layout="@layout/fragment_configuracion" />
 </navigation>

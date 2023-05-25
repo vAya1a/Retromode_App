@@ -17,8 +17,8 @@
         para cualquier ocasión. Su diseño retro y sofisticado hará que destaque entre la multitud.</string>
 
     <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Mis compras</string>
-    <string name="menu_slideshow">Configuración</string>
+    <string name="menu_compras">Mis compras</string>
+    <string name="menu_configuracion">Configuración</string>
     <string name="add_shop">Añadir al carrito</string>
     <string name="comprar_p">Comprar</string>
     <string-array name="tipoDoc">
