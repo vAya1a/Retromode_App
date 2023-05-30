@@ -26,11 +26,6 @@
         <item>CARNET CONDUCIR</item>
         <item>PASAPORTE</item>
     </string-array>
-    <string-array name="ciudades">
-        <item>Chiclayo</item>
-        <item>Lambayeque</item>
-        <item>Ferreñafe</item>
-    </string-array>
     <string-array name="provincias">
         <item>Álava</item>
         <item>Albacete</item>

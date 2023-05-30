@@ -240,7 +240,6 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/trueno"
-                                        android:inputType="number"
                                         android:textSize="15sp" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
@@ -261,11 +260,10 @@
                                     app:startIconDrawable="@drawable/ic_ubicacion">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edtInputCiudadU"
+                                        android:id="@+id/edtCiudadU"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/trueno"
-                                        android:inputType="number"
                                         android:textSize="15sp" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
