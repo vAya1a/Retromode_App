@@ -341,7 +341,7 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
                                     //Toast.makeText(this, uResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                     if (uResponse.getRpta() == 1) {
                                         //Toast.makeText(this, "Sus Datos y credenciales fueron creados correctamente", Toast.LENGTH_SHORT).show();
-                                        successMessage("¡Genial! " + "Bienvenido a Retromode.");
+                                        successMessage("¡Genial!, " + "¡Bienvenido a Retromode!");
                                         //this.finish();
                                     } else {
                                         toastIncorrecto("No se ha podido guardar los datos, intentelo de nuevo");
