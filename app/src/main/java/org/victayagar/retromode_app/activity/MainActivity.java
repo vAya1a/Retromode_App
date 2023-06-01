@@ -34,6 +34,8 @@ import org.victayagar.retromode_app.viewmodel.UsuarioViewModel;
 import java.sql.Date;
 import java.sql.Time;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MainActivity extends AppCompatActivity {
 
     VideoView videoLogin;
@@ -197,6 +199,22 @@ public class MainActivity extends AppCompatActivity {
             txtInputPassword.setErrorEnabled(false);
         }
         return retorno;
+    }
+
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE).setTitleText("Has pulsado atrás")
+                .setContentText("¿Estás seguro de que quieres salir?")
+                .setConfirmText("Cerrar").setCancelText("Cancelar")
+                .showCancelButton(true).setCancelClickListener(sDialog -> {
+                    sDialog.dismissWithAnimation();
+                    new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE).setTitleText("Operación cancelada")
+                            .setContentText("No saliste de la app")
+                            .show();
+                }).setConfirmClickListener(sweetAlertDialog -> {
+                    sweetAlertDialog.dismissWithAnimation();
+                    System.exit(0);
+                }).show();
     }
 
     @Override

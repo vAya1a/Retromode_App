@@ -107,7 +107,7 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getNombreCompletoCiente() {
+    public String getNombreCompletoCliente() {
         return this.nombre != null && this.primerApellido != null && this.segundoApellido != null ?
                 this.nombre + " " + this.primerApellido + " " + this.segundoApellido : "-----";
     }
