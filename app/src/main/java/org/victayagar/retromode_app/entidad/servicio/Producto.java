@@ -8,9 +8,9 @@ public class Producto {
     private Double precio;
     private int stock;
     private String descripcionProducto;
-    private String marca;
     private Categoria categoria;
     private boolean vigencia;
+    private boolean recomendado;
 
 
     public int getId() {
@@ -77,11 +77,11 @@ public class Producto {
         this.vigencia = vigencia;
     }
 
-    public String getMarca() {
-        return marca;
+    public boolean isRecomendado() {
+        return recomendado;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setRecomendado(boolean recomendado) {
+        this.recomendado = recomendado;
     }
 }
