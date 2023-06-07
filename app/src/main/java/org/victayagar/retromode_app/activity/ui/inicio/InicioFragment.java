@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -18,17 +20,23 @@ import com.smarteist.autoimageslider.SliderView;
 
 import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.adapter.CategoriaAdapter;
+import org.victayagar.retromode_app.adapter.ProductosRecomendadosAdapter;
 import org.victayagar.retromode_app.adapter.SliderAdapter;
 import org.victayagar.retromode_app.entidad.SliderItem;
+import org.victayagar.retromode_app.entidad.servicio.Producto;
 import org.victayagar.retromode_app.viewmodel.CategoriaViewModel;
+import org.victayagar.retromode_app.viewmodel.ProductoViewModel;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class InicioFragment extends Fragment {
     private CategoriaViewModel categoriaViewModel;
+    private ProductoViewModel productoViewModel;
+    private RecyclerView rcvProductosRecomendados;
+    private ProductosRecomendadosAdapter adapter;
+    private List<Producto> productos = new ArrayList<>();
     private GridView gvCategorias;
     private CategoriaAdapter categoriaAdapter;
 
@@ -52,10 +60,16 @@ public class InicioFragment extends Fragment {
 
         svCarrusel = v.findViewById(R.id.svCarrusel);
         ViewModelProvider vmp = new ViewModelProvider(this);
+        //Categorias
         categoriaViewModel = vmp.get(CategoriaViewModel.class);
         gvCategorias = v.findViewById(R.id.gvCategorias);
+        //Productos
+        rcvProductosRecomendados = v.findViewById(R.id.rcvProductosRecomendados);
+        rcvProductosRecomendados.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        productoViewModel = vmp.get(ProductoViewModel.class);
     }
     private void initAdapter(){
+        //Carrusel de imagenes
         sliderAdapter = new SliderAdapter(getContext());
         svCarrusel.setSliderAdapter(sliderAdapter);
         svCarrusel.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -65,8 +79,12 @@ public class InicioFragment extends Fragment {
         svCarrusel.setIndicatorUnselectedColor(Color.GRAY);
         svCarrusel.setScrollTimeInSec(4); //set scroll delay in seconds :
         svCarrusel.startAutoCycle();
+        //Categorias
         categoriaAdapter = new CategoriaAdapter(getContext(), R.layout.item_categorias, new ArrayList<>());
         gvCategorias.setAdapter(categoriaAdapter);
+        //Productos
+        adapter = new ProductosRecomendadosAdapter(productos);
+        rcvProductosRecomendados.setAdapter(adapter);
     }
     private void loadData(){
 
@@ -83,6 +101,9 @@ public class InicioFragment extends Fragment {
             }else{
                 System.out.println("Error al obtener las categorías activas");
             }
+        });
+        productoViewModel.listarProductosRecomendados().observe(getViewLifecycleOwner(), response -> {
+           adapter.updateItems(response.getBody());
         });
     }
 }

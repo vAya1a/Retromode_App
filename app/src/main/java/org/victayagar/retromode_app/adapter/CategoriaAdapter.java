@@ -16,10 +16,10 @@ import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.victayagar.retromode_app.R;
+import org.victayagar.retromode_app.activity.ListarProductosPorCategoriaActivity;
 import org.victayagar.retromode_app.api.ConfigApi;
 import org.victayagar.retromode_app.entidad.servicio.Categoria;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaAdapter extends ArrayAdapter<Categoria> {
@@ -47,6 +47,11 @@ public class CategoriaAdapter extends ArrayAdapter<Categoria> {
                 .error(R.drawable.image_not_found)
                 .into(imgCategoria);
         txtNombreCategoria.setText(c.getNombre());
+        convertView.setOnClickListener(v -> {
+            Intent i  = new Intent(getContext(), ListarProductosPorCategoriaActivity.class);
+            i.putExtra("idC", c.getId());//OBTENEMOS EL ID DE LA CATEGORIA
+            getContext().startActivity(i);
+        });
         return convertView;
     }
 }
