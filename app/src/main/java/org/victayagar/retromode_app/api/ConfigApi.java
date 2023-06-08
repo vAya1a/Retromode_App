@@ -25,6 +25,7 @@ public class ConfigApi {
     private static DocumentoAlmacenadoApi documentoAlmacenadoApi;
     private static CategoriaApi categoriaApi;
     private static ProductoApi productoApi;
+    private static PedidoApi pedidoApi;
 
     static {
         initClient();
@@ -94,5 +95,11 @@ public class ConfigApi {
             productoApi = retrofit.create(ProductoApi.class);
         }
         return productoApi;
+    }
+    public static PedidoApi getPedidoApi(){
+        if(pedidoApi == null){
+            pedidoApi = retrofit.create(PedidoApi.class);
+        }
+        return pedidoApi;
     }
 }

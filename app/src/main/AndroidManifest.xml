@@ -24,6 +24,9 @@
         android:theme="@style/Theme.Retromode_App"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ui.compras.DetalleMisComprasActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ListarProductosPorCategoriaActivity"
             android:exported="false" />
         <activity
