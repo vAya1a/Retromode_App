@@ -1,5 +1,6 @@
 package org.victayagar.retromode_app.activity.ui.inicio;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.adapter.CategoriaAdapter;
 import org.victayagar.retromode_app.adapter.ProductosRecomendadosAdapter;
 import org.victayagar.retromode_app.adapter.SliderAdapter;
+import org.victayagar.retromode_app.communication.Communication;
 import org.victayagar.retromode_app.entidad.SliderItem;
 import org.victayagar.retromode_app.entidad.servicio.Producto;
 import org.victayagar.retromode_app.viewmodel.CategoriaViewModel;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InicioFragment extends Fragment {
+public class InicioFragment extends Fragment implements Communication {
     private CategoriaViewModel categoriaViewModel;
     private ProductoViewModel productoViewModel;
     private RecyclerView rcvProductosRecomendados;
@@ -83,7 +85,7 @@ public class InicioFragment extends Fragment {
         categoriaAdapter = new CategoriaAdapter(getContext(), R.layout.item_categorias, new ArrayList<>());
         gvCategorias.setAdapter(categoriaAdapter);
         //Productos
-        adapter = new ProductosRecomendadosAdapter(productos);
+        adapter = new ProductosRecomendadosAdapter(productos, this);
         rcvProductosRecomendados.setAdapter(adapter);
     }
     private void loadData(){
@@ -105,5 +107,11 @@ public class InicioFragment extends Fragment {
         productoViewModel.listarProductosRecomendados().observe(getViewLifecycleOwner(), response -> {
            adapter.updateItems(response.getBody());
         });
+    }
+
+    @Override
+    public void showDetails(Intent i) {
+        getActivity().startActivity(i);
+        getActivity().overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 }

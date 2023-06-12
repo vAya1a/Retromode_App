@@ -23,7 +23,6 @@
     <string name="comprar_p">Comprar</string>
     <string-array name="tipoDoc">
         <item>DNI</item>
-        <item>CARNET CONDUCIR</item>
         <item>PASAPORTE</item>
     </string-array>
     <string-array name="provincias">
