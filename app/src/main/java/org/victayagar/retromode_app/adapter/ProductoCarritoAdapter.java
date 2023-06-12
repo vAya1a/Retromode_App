@@ -72,7 +72,7 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
 
         public void setItem(final DetallePedido dp) {
             this.tvNombreProductoDC.setText(dp.getProducto().getNombre());
-            this.tvPrecioPDC.setText(String.format(Locale.ENGLISH, "S/%.2f", dp.getPrecio()));
+            this.tvPrecioPDC.setText(String.format(Locale.ENGLISH, "€%.2f", dp.getPrecio()));
             int cant = dp.getCantidad();
             this.edtCantidad.setText(Integer.toString(cant));
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + dp.getProducto().getFoto().getFileName();
@@ -116,19 +116,19 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
             toast.show();
         }
         private void showMsg(int idProducto) {
-            new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Aviso!!")
-                    .setContentText("¿Estás seguro de eliminar el producto de tu carrito de compras?")
-                    .setCancelText("No, Cancelar!").setConfirmText("Sí, Confirmar")
+            new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Atención!")
+                    .setContentText("¿Estás seguro de eliminar este producto de tu carrito de compras?")
+                    .setCancelText("Cancelar").setConfirmText("Confirmar")
                     .showCancelButton(true).setCancelClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("Operación cancelada")
-                                .setContentText("No eliminaste ningún producto de compras")
+                                .setContentText("No se ha eliminado ningún producto de tu carrito.")
                                 .show();
                     }).setConfirmClickListener(sweetAlertDialog -> {
                         c.eliminarDetalle(idProducto);
                         sweetAlertDialog.dismissWithAnimation();
-                        new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Aviso!!")
-                                .setContentText("Excelente, el producto acaba de ser eliminado de tu carrito de compras")
+                        new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Atención!")
+                                .setContentText("El producto acaba de ser eliminado de tu carrito de compras.")
                                 .show();
                     }).show();
         }

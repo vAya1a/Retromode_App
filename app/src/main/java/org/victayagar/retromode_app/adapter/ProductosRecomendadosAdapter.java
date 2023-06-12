@@ -21,7 +21,9 @@ import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.activity.DetalleProductoActivity;
 import org.victayagar.retromode_app.api.ConfigApi;
 import org.victayagar.retromode_app.communication.Communication;
+import org.victayagar.retromode_app.entidad.servicio.DetallePedido;
 import org.victayagar.retromode_app.entidad.servicio.Producto;
+import org.victayagar.retromode_app.utils.Carrito;
 import org.victayagar.retromode_app.utils.DateSerializer;
 import org.victayagar.retromode_app.utils.TimeSerializer;
 
@@ -29,7 +31,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<ProductosRecomendadosAdapter.ViewHolder>{
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<ProductosRecomendadosAdapter.ViewHolder> {
 
     private List<Producto> productos;
     private final Communication communication;
@@ -56,18 +60,19 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
         return this.productos.size();
     }
 
-    public void updateItems(List<Producto> producto){
+    public void updateItems(List<Producto> producto) {
         this.productos.clear();
         this.productos.addAll(producto);
         this.notifyDataSetChanged();
     }
 
-    protected class ViewHolder extends RecyclerView.ViewHolder{
+    protected class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-        public void setItem(final Producto p){
+
+        public void setItem(final Producto p) {
             ImageView imgProducto = itemView.findViewById(R.id.imgProducto);
             TextView nameProducto = itemView.findViewById(R.id.nameProducto);
             Button btnPedir = itemView.findViewById(R.id.btnPedir);
@@ -83,7 +88,12 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
                     .into(imgProducto);
             nameProducto.setText(p.getNombre());
             btnPedir.setOnClickListener(v -> {
-                Toast.makeText(itemView.getContext(), "Hola, Mundo", Toast.LENGTH_SHORT).show();
+                DetallePedido detallePedido = new DetallePedido();
+                detallePedido.setProducto(p);
+                detallePedido.setCantidad(1);
+                detallePedido.setPrecio(p.getPrecio());
+                //mostrarBadgeCommunication.add(detallePedido);
+                successMessage(Carrito.agregarProductos(detallePedido));
             });
             //Inicializar la vista del detalle del producto
             itemView.setOnClickListener(v -> {
@@ -95,6 +105,13 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
                 i.putExtra("detalleProducto", g.toJson(p));
                 communication.showDetails(i);
             });
+
+        }
+
+        public void successMessage(String message) {
+            new SweetAlertDialog(itemView.getContext(),
+                    SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Añadido!")
+                    .setContentText(message).show();
         }
     }
 }
