@@ -81,7 +81,6 @@
                         android:id="@+id/txtValueProducto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/txtNameProducto"
                         android:fontFamily="@font/trueno"

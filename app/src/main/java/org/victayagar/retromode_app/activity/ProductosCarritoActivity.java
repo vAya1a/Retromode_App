@@ -72,10 +72,10 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
             int idC = u.getCliente().getId();
             if (idC != 0) {
                 if (Carrito.getDetallePedidos().isEmpty()) {
-                    toastIncorrecto("¡Ups!, La bolsa de compras está vacia.");
+                    toastIncorrecto("¡Ups!, El carrito de compras está vacío.");
                 } else {
                     toastCorrecto("Procesando pedido...");
-                    //registrarPedido(idC);
+                    registrarPedido(idC);
                 }
             } else {
                 toastIncorrecto("No ha iniciado sesión, se le redirigirá al login");
@@ -105,16 +105,16 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         dto.getPedido().setMonto(getTotalV(detallePedidos));
         dto.getCliente().setId(idC);
         dto.setDetallePedidos(detallePedidos);
-        /*this.pedidoViewModel.guardarPedido(dto).observe(this, response -> {
+        this.pedidoViewModel.guardarPedido(dto).observe(this, response -> {
             if(response.getRpta() == 1){
-                toastCorrecto("Pedido registrado con éxito");
+                toastCorrecto("¡El pedido se ha registrado con exito.");
                 Carrito.limpiar();
                 finish();
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
             }else{
-                toastIncorrecto("Demonios ! , No se pudo registrar el pedido");
+                toastIncorrecto("¡Aviso!,ocurrió un error y no se pudo registrar el pedido.");
             }
-        });*/
+        });
 
     }
 

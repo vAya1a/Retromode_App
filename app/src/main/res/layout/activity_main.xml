@@ -95,10 +95,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/trueno"
             android:gravity="center|center_horizontal"
-            android:text="@string/label_olvide_contra"
+            android:text="Aplicación realizada por \n Víctor Ayala"
             android:textColor="@color/grey"
             android:textSize="15sp" />
 

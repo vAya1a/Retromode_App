@@ -27,10 +27,10 @@ public class PedidoViewModel extends AndroidViewModel {
         return this.repositorio.listarPedidosPorCliente(idCli);
     }
 
-   /* public LiveData<GenericResponse<GenerarPedidoDTO>> guardarPedido(GenerarPedidoDTO dto){
+    public LiveData<GenericResponse<GenerarPedidoDTO>> guardarPedido(GenerarPedidoDTO dto){
         return repositorio.save(dto);
     }
-    public LiveData<GenericResponse<Pedido>> anularPedido(int id){
+    /*public LiveData<GenericResponse<Pedido>> anularPedido(int id){
         return repositorio.anularPedido(id);
     }
 

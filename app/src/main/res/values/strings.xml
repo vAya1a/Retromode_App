@@ -4,7 +4,6 @@
     <string name="label_password">Contraseña</string>
     <string name="label_inicio_sesion">INICIAR SESIÓN</string>
     <string name="label_nuevoUsuario"><b>Crear cuenta</b></string>
-    <string name="label_olvide_contra">Olvidé mi contraseña</string>
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,7 +22,6 @@
     <string name="comprar_p">Comprar</string>
     <string-array name="tipoDoc">
         <item>DNI</item>
-        <item>PASAPORTE</item>
     </string-array>
     <string-array name="provincias">
         <item>Álava</item>
@@ -39,6 +37,7 @@
         <item>Cádiz</item>
         <item>Cantabria</item>
         <item>Castellón</item>
+        <item>Ceuta</item>
         <item>Ciudad Real</item>
         <item>Córdoba</item>
         <item>Cuenca</item>
@@ -49,6 +48,7 @@
         <item>Huelva</item>
         <item>Huesca</item>
         <item>Islas Baleares</item>
+        <item>Islas Canarias</item>
         <item>Jaén</item>
         <item>La Coruña</item>
         <item>La Rioja</item>
@@ -57,6 +57,7 @@
         <item>Lérida</item>
         <item>Lugo</item>
         <item>Madrid</item>
+        <item>Melilla</item>
         <item>Málaga</item>
         <item>Murcia</item>
         <item>Navarra</item>

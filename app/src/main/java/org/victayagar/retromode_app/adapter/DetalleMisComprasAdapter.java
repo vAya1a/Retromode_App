@@ -35,7 +35,7 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.setItem(this.detalles.get(position));
     }
 
     @Override

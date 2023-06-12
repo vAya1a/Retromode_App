@@ -66,6 +66,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:backgroundTint="#2e2e2e"
+                    android:fontFamily="@font/trueno"
                     android:text="Realizar compra"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
