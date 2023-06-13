@@ -19,6 +19,7 @@ import retrofit2.http.Streaming;
 
 public interface PedidoApi {
     String base = "api/pedido";
+
     @GET(base + "/misPedidos/{idCli}")
     Call<GenericResponse<List<PedidoConDetallesDTO>>> listarPedidosPorCliente(@Path("idCli") int idCli);
 

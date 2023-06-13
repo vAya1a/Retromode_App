@@ -10,6 +10,7 @@ import retrofit2.http.POST;
 public interface ClienteApi {
 
     String base = "api/cliente";
+
     @POST(base)
     Call<GenericResponse<Cliente>> guardarCliente(@Body Cliente c);
 }

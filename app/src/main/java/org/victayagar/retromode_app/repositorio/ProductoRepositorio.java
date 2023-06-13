@@ -21,7 +21,8 @@ public class ProductoRepositorio {
     public ProductoRepositorio() {
         this.api = ConfigApi.getProductoApi();
     }
-    public static ProductoRepositorio getInstance(){
+
+    public static ProductoRepositorio getInstance() {
         if (repositorio == null) {
             repositorio = new ProductoRepositorio();
         }
@@ -45,7 +46,7 @@ public class ProductoRepositorio {
         return mld;
     }
 
-    public LiveData<GenericResponse<List<Producto>>> listarProductosPorCategoria(int idC){
+    public LiveData<GenericResponse<List<Producto>>> listarProductosPorCategoria(int idC) {
         final MutableLiveData<GenericResponse<List<Producto>>> mld = new MutableLiveData<>();
         this.api.listarProductosPorCategoria(idC).enqueue(new Callback<GenericResponse<List<Producto>>>() {
             @Override

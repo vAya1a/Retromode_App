@@ -1,15 +1,5 @@
 package org.victayagar.retromode_app.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,18 +20,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
-import org.victayagar.retromode_app.R;
-import org.victayagar.retromode_app.entidad.servicio.Cliente;
-import org.victayagar.retromode_app.entidad.servicio.Usuario;
-import org.victayagar.retromode_app.entidad.servicio.DocumentoAlmacenado;
-import org.victayagar.retromode_app.viewmodel.ClienteViewModel;
-import org.victayagar.retromode_app.viewmodel.DocumentoAlmacenadoViewModel;
-import org.victayagar.retromode_app.viewmodel.UsuarioViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
+import org.victayagar.retromode_app.R;
+import org.victayagar.retromode_app.entidad.servicio.Cliente;
+import org.victayagar.retromode_app.entidad.servicio.DocumentoAlmacenado;
+import org.victayagar.retromode_app.entidad.servicio.Usuario;
+import org.victayagar.retromode_app.viewmodel.ClienteViewModel;
+import org.victayagar.retromode_app.viewmodel.DocumentoAlmacenadoViewModel;
+import org.victayagar.retromode_app.viewmodel.UsuarioViewModel;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -148,12 +143,8 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
         txtInputDireccionU = findViewById(R.id.txtInputDireccionU);
         txtInputEmailUser = findViewById(R.id.txtInputEmailUser);
         txtInputPasswordUser = findViewById(R.id.txtInputPasswordUser);
-        btnSubirImagen.setOnClickListener(v -> {
-            this.cargarImagen();
-        });
-        btnGuardarDatos.setOnClickListener(v -> {
-            this.guardarDatos();
-        });
+        btnSubirImagen.setOnClickListener(v -> this.cargarImagen());
+        btnGuardarDatos.setOnClickListener(v -> this.guardarDatos());
         ///ONCHANGE LISTENER A LOS EDITEXT
         edtNameUser.addTextChangedListener(new TextWatcher() {
             @Override
@@ -337,7 +328,7 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
                                 u.setCliente(new Cliente(idc));
                                 this.usuarioViewModel.save(u).observe(this, uResponse -> {
                                     if (uResponse.getRpta() == 1) {
-                                        this.finish();
+                                        c.setFoto(null);
                                         successMessage("¡Genial!, " + "¡Bienvenido a Retromode!");
                                     } else {
                                         toastIncorrecto("No se ha podido guardar los datos, intentelo de nuevo");
@@ -480,7 +471,7 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
 
     public void successMessage(String message) {
         new SweetAlertDialog(this,
-                SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Buen Trabajo!")
+                SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")
                 .setContentText(message).show();
         edtNameUser.setText("");
         edtPasswordUser.setText("");
@@ -505,6 +496,7 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
                 SweetAlertDialog.WARNING_TYPE).setTitleText("Notificación del Sistema")
                 .setContentText(message).setConfirmText("OK").show();
     }
+
     public void toastIncorrecto(String msg) {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.custom_toast_error, (ViewGroup) findViewById(R.id.ll_custom_toast_error));

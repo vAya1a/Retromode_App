@@ -32,7 +32,7 @@ public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
         loadData();
     }
 
-    private void init(){
+    private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
         toolbar.setNavigationOnClickListener(v -> {
@@ -55,8 +55,6 @@ public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
 
     private void loadData() {
         int idC = getIntent().getIntExtra("idC", 0); //Recibimos el idCategoria
-        productoViewModel.listarProductosPorCategoria(idC).observe(this, response -> {
-            adapter.updateItems(response.getBody());
-        });
+        productoViewModel.listarProductosPorCategoria(idC).observe(this, response -> adapter.updateItems(response.getBody()));
     }
 }

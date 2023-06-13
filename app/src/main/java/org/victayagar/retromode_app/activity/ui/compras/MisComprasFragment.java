@@ -46,9 +46,9 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MisComprasFragment extends Fragment implements Communication, AnularPedidoCommunication {
     private ActivityResultLauncher<String> perReqLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
-        if(result){
+        if (result) {
             successMessage("Gracias por concedernos el permiso, pulsa el botón nuevamente para descargar la factura");
-        }else{
+        } else {
             errorMessage("Permiso denegado, no podemos continuar");
         }
     });
@@ -93,9 +93,7 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         String usuarioJson = sp.getString("UsuarioJson", null);
         if (usuarioJson != null) {
             final Usuario u = g.fromJson(usuarioJson, Usuario.class);
-            this.pedidoViewModel.listarPedidosPorCliente(u.getCliente().getId()).observe(getViewLifecycleOwner(), response -> {
-                adapter.updateItems(response.getBody());
-            });
+            this.pedidoViewModel.listarPedidosPorCliente(u.getCliente().getId()).observe(getViewLifecycleOwner(), response -> adapter.updateItems(response.getBody()));
         }
     }
 
@@ -134,9 +132,7 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
                                         Intent intent = new Intent(requireContext(), VerInvoiceActivity.class);
                                         intent.putExtra("pdf", bytes);
                                         startActivity(intent);
-                                    }).setNegativeButton("QUIZÁS MÁS TARDE", (dialogInterface, i) -> {
-                                        dialogInterface.dismiss();
-                                    }).show();
+                                    }).setNegativeButton("QUIZÁS MÁS TARDE", (dialogInterface, i) -> dialogInterface.dismiss()).show();
                         }
                     } catch (Exception e) {
                         errorMessage("No se pudo guardar el archivo en el dispositivo");
@@ -166,11 +162,13 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         });
         return "El pedido ha sido cancelado";
     }
+
     public void successMessage(String message) {
         new SweetAlertDialog(requireContext(),
                 SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")
                 .setContentText(message).show();
     }
+
     public void errorMessage(String message) {
         new SweetAlertDialog(requireContext(),
                 SweetAlertDialog.ERROR_TYPE).setTitleText("¡Ups!... ocurrió un error")

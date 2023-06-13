@@ -11,6 +11,7 @@ import org.victayagar.retromode_app.R;
 
 public class VerInvoiceActivity extends AppCompatActivity {
     private PDFView pdfView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +21,10 @@ public class VerInvoiceActivity extends AppCompatActivity {
         pdfView.fromBytes(pdf).load();
         init();
     }
-    private void init(){
+
+    private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(v ->{
+        toolbar.setNavigationOnClickListener(v -> {
             this.finish();
             this.overridePendingTransition(R.anim.rigth_in, R.anim.rigth_out);
         });

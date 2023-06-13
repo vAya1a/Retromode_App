@@ -83,7 +83,6 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
             picasso.load(url)
-                    //.networkPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .error(R.drawable.image_not_found)
                     .into(imgProducto);
             nameProducto.setText(p.getNombre());
@@ -92,7 +91,6 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
                 detallePedido.setProducto(p);
                 detallePedido.setCantidad(1);
                 detallePedido.setPrecio(p.getPrecio());
-                //mostrarBadgeCommunication.add(detallePedido);
                 successMessage(Carrito.agregarProductos(detallePedido));
             });
             //Inicializar la vista del detalle del producto

@@ -27,11 +27,12 @@ public class PedidoRepositorio {
     private final PedidoApi api;
     private static PedidoRepositorio repositorio;
 
-    public PedidoRepositorio(){
+    public PedidoRepositorio() {
         this.api = ConfigApi.getPedidoApi();
     }
-    public static PedidoRepositorio getInstance(){
-        if(repositorio == null){
+
+    public static PedidoRepositorio getInstance() {
+        if (repositorio == null) {
             repositorio = new PedidoRepositorio();
         }
         return repositorio;
@@ -74,13 +75,14 @@ public class PedidoRepositorio {
         });
         return data;
     }
+
     //ANULAR PEDIDO
-    public LiveData<GenericResponse<Pedido>> anularPedido(int id){
+    public LiveData<GenericResponse<Pedido>> anularPedido(int id) {
         MutableLiveData<GenericResponse<Pedido>> mld = new MutableLiveData<>();
         this.api.anularPedido(id).enqueue(new Callback<GenericResponse<Pedido>>() {
             @Override
             public void onResponse(Call<GenericResponse<Pedido>> call, Response<GenericResponse<Pedido>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mld.setValue(response.body());
                 }
             }
@@ -93,17 +95,19 @@ public class PedidoRepositorio {
         });
         return mld;
     }
+
     /**
      * Este método develve el reporte PDF de la compra realizada
+     *
      * @param idCli
      * @param idOrden
      */
-    public LiveData<GenericResponse<ResponseBody>> exportInvoice(int idCli, int idOrden){
+    public LiveData<GenericResponse<ResponseBody>> exportInvoice(int idCli, int idOrden) {
         MutableLiveData<GenericResponse<ResponseBody>> mld = new MutableLiveData<>();
         this.api.exportInvoicePDF(idCli, idOrden).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mld.setValue(new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, response.body()));
                     Log.e("exportInvoice", "file recived");
                 }

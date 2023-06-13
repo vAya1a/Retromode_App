@@ -20,7 +20,8 @@ public class DocumentoAlmacenadoViewModel extends AndroidViewModel {
         super(application);
         this.repositorio = DocumentoAlmacenadoRepositorio.getInstance();
     }
-    public LiveData<GenericResponse<DocumentoAlmacenado>> save(MultipartBody.Part part, RequestBody requestBody){
+
+    public LiveData<GenericResponse<DocumentoAlmacenado>> save(MultipartBody.Part part, RequestBody requestBody) {
         return this.repositorio.savePhoto(part, requestBody);
     }
 }

@@ -55,7 +55,8 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
     public int getItemCount() {
         return this.pedidos.size();
     }
-    public void updateItems(List<PedidoConDetallesDTO> pedido){
+
+    public void updateItems(List<PedidoConDetallesDTO> pedido) {
         this.pedidos.clear();
         this.pedidos.addAll(pedido);
         this.notifyDataSetChanged();
@@ -102,6 +103,7 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
                 communication.exportInvoice(idCli, idOrden, fileName);
             });
         }
+
         private void anularPedido(int id) {
             new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Aviso!")
                     .setContentText("¿Estás seguro de cancelar el pedido solicitado? Una vez cancelado no podrás deshacer los cambios...")

@@ -16,16 +16,18 @@ public class ClienteRepositorio {
     private static ClienteRepositorio repositorio;
     private final ClienteApi api;
 
-    public static ClienteRepositorio getInstance(){
-        if(repositorio == null) {
+    public static ClienteRepositorio getInstance() {
+        if (repositorio == null) {
             repositorio = new ClienteRepositorio();
         }
         return repositorio;
     }
-    private ClienteRepositorio(){
+
+    private ClienteRepositorio() {
         api = ConfigApi.getClienteApi();
     }
-    public LiveData<GenericResponse<Cliente>> guardarCliente(Cliente c){
+
+    public LiveData<GenericResponse<Cliente>> guardarCliente(Cliente c) {
         final MutableLiveData<GenericResponse<Cliente>> mld = new MutableLiveData<>();
         this.api.guardarCliente(c).enqueue(new Callback<GenericResponse<Cliente>>() {
             @Override

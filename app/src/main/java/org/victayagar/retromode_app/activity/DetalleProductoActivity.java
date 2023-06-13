@@ -30,7 +30,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class DetalleProductoActivity extends AppCompatActivity {
 
     private ImageView imgProductoDetalle;
-    private Button btnAgregarCarrito, btnComprar;
+    private Button btnAgregarCarrito;
     private TextView tvNameProductoDetalle, tvPrecioProductoDetalle, tvDescripcionProductoDetalle;
     final Gson g = new GsonBuilder()
             .registerTypeAdapter(Date.class, new DateSerializer())
@@ -46,7 +46,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         loadData();
     }
 
-    private void init(){
+    private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
         toolbar.setNavigationOnClickListener(v -> {
@@ -55,11 +55,11 @@ public class DetalleProductoActivity extends AppCompatActivity {
         });
         this.imgProductoDetalle = findViewById(R.id.imgProductoDetalle);
         this.btnAgregarCarrito = findViewById(R.id.btnAgregarCarrito);
-        this.btnComprar = findViewById(R.id.btnComprar);
         this.tvNameProductoDetalle = findViewById(R.id.tvNameProductoDetalle);
         this.tvPrecioProductoDetalle = findViewById(R.id.tvPrecioProductoDetalle);
         this.tvDescripcionProductoDetalle = findViewById(R.id.tvDescripcionProductoDetalle);
     }
+
     private void loadData() {
         final String detalleString = this.getIntent().getStringExtra("detalleProducto");
         if (detalleString != null) {
@@ -87,6 +87,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             successMessage(Carrito.agregarProductos(detallePedido));
         });
     }
+
     public void successMessage(String message) {
         new SweetAlertDialog(this,
                 SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")

@@ -58,7 +58,7 @@ public class InicioFragment extends Fragment implements Communication {
         loadData();
     }
 
-    private void init(View v){
+    private void init(View v) {
 
         svCarrusel = v.findViewById(R.id.svCarrusel);
         ViewModelProvider vmp = new ViewModelProvider(this);
@@ -70,7 +70,8 @@ public class InicioFragment extends Fragment implements Communication {
         rcvProductosRecomendados.setLayoutManager(new GridLayoutManager(getContext(), 1));
         productoViewModel = vmp.get(ProductoViewModel.class);
     }
-    private void initAdapter(){
+
+    private void initAdapter() {
         //Carrusel de imagenes
         sliderAdapter = new SliderAdapter(getContext());
         svCarrusel.setSliderAdapter(sliderAdapter);
@@ -88,7 +89,8 @@ public class InicioFragment extends Fragment implements Communication {
         adapter = new ProductosRecomendadosAdapter(productos, this);
         rcvProductosRecomendados.setAdapter(adapter);
     }
-    private void loadData(){
+
+    private void loadData() {
 
         List<SliderItem> lista = new ArrayList<>();
         lista.add(new SliderItem(R.drawable.nuevo_stock, "¡Nuevo stock!"));
@@ -96,17 +98,15 @@ public class InicioFragment extends Fragment implements Communication {
         lista.add(new SliderItem(R.drawable.vaqueros1, "¡Tenemos gran variedad de vaqueros!"));
         sliderAdapter.updateItem(lista);
         categoriaViewModel.listarCategoriasActivas().observe(getViewLifecycleOwner(), response -> {
-            if(response.getRpta() == 1){
+            if (response.getRpta() == 1) {
                 categoriaAdapter.clear();
                 categoriaAdapter.addAll(response.getBody());
                 categoriaAdapter.notifyDataSetChanged();
-            }else{
+            } else {
                 System.out.println("Error al obtener las categorías activas");
             }
         });
-        productoViewModel.listarProductosRecomendados().observe(getViewLifecycleOwner(), response -> {
-           adapter.updateItems(response.getBody());
-        });
+        productoViewModel.listarProductosRecomendados().observe(getViewLifecycleOwner(), response -> adapter.updateItems(response.getBody()));
     }
 
     @Override

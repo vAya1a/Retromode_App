@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFotoPerfil"
         android:layout_width="70dp"
         android:layout_height="70dp"

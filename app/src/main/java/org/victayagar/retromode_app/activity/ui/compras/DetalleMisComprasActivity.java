@@ -35,19 +35,19 @@ public class DetalleMisComprasActivity extends AppCompatActivity {
         loadData();
     }
 
-    private void init(){
+    private void init() {
         rcvDetalleMisCompras = findViewById(R.id.rcvDetalleMisCompras);
         rcvDetalleMisCompras.setLayoutManager(new GridLayoutManager(this, 1));
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
-        toolbar.setNavigationOnClickListener(v -> {
-            this.onBackPressed();
-        });
+        toolbar.setNavigationOnClickListener(v -> this.onBackPressed());
     }
-    private void initAdapter(){
+
+    private void initAdapter() {
         adapter = new DetalleMisComprasAdapter(new ArrayList<>());
         rcvDetalleMisCompras.setAdapter(adapter);
     }
+
     private void loadData() {
         final String detalleString = this.getIntent().getStringExtra("detailsPurchases");
         if (detalleString != null) {

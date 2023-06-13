@@ -21,13 +21,15 @@ public class CategoriaRepositorio {
     public CategoriaRepositorio() {
         this.api = ConfigApi.getCategoriaApi();
     }
-    public static CategoriaRepositorio getInstance(){
-        if(repositorio == null){
+
+    public static CategoriaRepositorio getInstance() {
+        if (repositorio == null) {
             repositorio = new CategoriaRepositorio();
         }
         return repositorio;
     }
-    public LiveData<GenericResponse<List<Categoria>>> listarCategoriasActivas(){
+
+    public LiveData<GenericResponse<List<Categoria>>> listarCategoriasActivas() {
         final MutableLiveData<GenericResponse<List<Categoria>>> mld = new MutableLiveData<>();
         this.api.listarCategoriasActivas().enqueue(new Callback<GenericResponse<List<Categoria>>>() {
             @Override

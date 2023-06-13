@@ -32,23 +32,22 @@ public class CategoriaAdapter extends ArrayAdapter<Categoria> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_categorias, parent, false);
         }
         Categoria c = this.getItem(position);
         ImageView imgCategoria = convertView.findViewById(R.id.imgCategoria);
-        TextView txtNombreCategoria= convertView.findViewById(R.id.txtNombreCategoria);
+        TextView txtNombreCategoria = convertView.findViewById(R.id.txtNombreCategoria);
 
         Picasso picasso = new Picasso.Builder(convertView.getContext())
                 .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                 .build();
         picasso.load(url + c.getFoto().getFileName())
-                //.networkPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                 .error(R.drawable.image_not_found)
                 .into(imgCategoria);
         txtNombreCategoria.setText(c.getNombre());
         convertView.setOnClickListener(v -> {
-            Intent i  = new Intent(getContext(), ListarProductosPorCategoriaActivity.class);
+            Intent i = new Intent(getContext(), ListarProductosPorCategoriaActivity.class);
             i.putExtra("idC", c.getId());//OBTENEMOS EL ID DE LA CATEGORIA
             getContext().startActivity(i);
         });

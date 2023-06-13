@@ -5,7 +5,6 @@ import org.victayagar.retromode_app.entidad.servicio.DetallePedido;
 import org.victayagar.retromode_app.entidad.servicio.Pedido;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GenerarPedidoDTO {
     private Pedido pedido;

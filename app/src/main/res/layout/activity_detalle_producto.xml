@@ -118,14 +118,6 @@
                                 android:layout_marginEnd="8dp"
                                 android:drawableEnd="@drawable/ic_add_shop"
                                 android:text="@string/add_shop" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnComprar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="#DA2E2E"
-                                android:drawableEnd="@drawable/ic_dinero"
-                                android:text="@string/comprar_p" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

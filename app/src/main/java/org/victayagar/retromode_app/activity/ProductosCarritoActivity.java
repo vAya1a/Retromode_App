@@ -47,6 +47,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
             .registerTypeAdapter(Date.class, new DateSerializer())
             .registerTypeAdapter(Time.class, new TimeSerializer())
             .create();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         initAdapter();
     }
 
-    private void init(){
+    private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
         toolbar.setNavigationOnClickListener(v -> {//Reemplazo con lamba
@@ -96,7 +97,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         rcvCarritoCompras.setAdapter(adapter);
     }
 
-    private void registrarPedido(int idC){
+    private void registrarPedido(int idC) {
         ArrayList<DetallePedido> detallePedidos = Carrito.getDetallePedidos();
         GenerarPedidoDTO dto = new GenerarPedidoDTO();
         java.util.Date date = new java.util.Date();
@@ -106,12 +107,12 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         dto.getCliente().setId(idC);
         dto.setDetallePedidos(detallePedidos);
         this.pedidoViewModel.guardarPedido(dto).observe(this, response -> {
-            if(response.getRpta() == 1){
+            if (response.getRpta() == 1) {
                 toastCorrecto("¡El pedido se ha registrado en nuestra base con exito!");
                 Carrito.limpiar();
                 finish();
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
-            }else{
+            } else {
                 toastIncorrecto("¡Aviso!, ocurrió un error y no se pudo registrar el pedido");
             }
         });
@@ -159,5 +160,3 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         this.adapter.notifyDataSetChanged();
     }
 }
-
-//MIN 25

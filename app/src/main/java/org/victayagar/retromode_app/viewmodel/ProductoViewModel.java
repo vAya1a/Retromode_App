@@ -19,10 +19,12 @@ public class ProductoViewModel extends AndroidViewModel {
         super(application);
         repositorio = ProductoRepositorio.getInstance();
     }
-    public LiveData<GenericResponse<List<Producto>>> listarProductosRecomendados(){
+
+    public LiveData<GenericResponse<List<Producto>>> listarProductosRecomendados() {
         return this.repositorio.listarProductosRecomendados();
     }
-    public LiveData<GenericResponse<List<Producto>>> listarProductosPorCategoria(int idC){
+
+    public LiveData<GenericResponse<List<Producto>>> listarProductosPorCategoria(int idC) {
         return this.repositorio.listarProductosPorCategoria(idC);
     }
 }

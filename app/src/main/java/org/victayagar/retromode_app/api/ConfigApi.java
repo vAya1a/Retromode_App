@@ -71,33 +71,36 @@ public class ConfigApi {
         return usuarioApi;
     }
 
-    public static ClienteApi getClienteApi(){
-        if(clienteApi == null){
+    public static ClienteApi getClienteApi() {
+        if (clienteApi == null) {
             clienteApi = retrofit.create(ClienteApi.class);
         }
         return clienteApi;
     }
 
-    public static DocumentoAlmacenadoApi getDocumentoAlmacenadoApi(){
-        if(documentoAlmacenadoApi == null){
+    public static DocumentoAlmacenadoApi getDocumentoAlmacenadoApi() {
+        if (documentoAlmacenadoApi == null) {
             documentoAlmacenadoApi = retrofit.create(DocumentoAlmacenadoApi.class);
         }
         return documentoAlmacenadoApi;
     }
-    public static CategoriaApi getCategoriaApi(){
-        if(categoriaApi == null){
+
+    public static CategoriaApi getCategoriaApi() {
+        if (categoriaApi == null) {
             categoriaApi = retrofit.create(CategoriaApi.class);
         }
         return categoriaApi;
     }
-    public static ProductoApi getProductoApi(){
-        if(productoApi == null){
+
+    public static ProductoApi getProductoApi() {
+        if (productoApi == null) {
             productoApi = retrofit.create(ProductoApi.class);
         }
         return productoApi;
     }
-    public static PedidoApi getPedidoApi(){
-        if(pedidoApi == null){
+
+    public static PedidoApi getPedidoApi() {
+        if (pedidoApi == null) {
             pedidoApi = retrofit.create(PedidoApi.class);
         }
         return pedidoApi;

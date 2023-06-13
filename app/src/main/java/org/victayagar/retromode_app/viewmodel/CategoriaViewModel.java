@@ -19,7 +19,8 @@ public class CategoriaViewModel extends AndroidViewModel {
         super(application);
         this.repositorio = CategoriaRepositorio.getInstance();
     }
-    public LiveData<GenericResponse<List<Categoria>>> listarCategoriasActivas(){
+
+    public LiveData<GenericResponse<List<Categoria>>> listarCategoriasActivas() {
         return this.repositorio.listarCategoriasActivas();
     }
 }

@@ -20,14 +20,14 @@ public class UsuarioRepositorio {
         this.api = ConfigApi.getUsuarioApi();
     }
 
-    public static UsuarioRepositorio getInstance(){
-        if(repositorio == null){
+    public static UsuarioRepositorio getInstance() {
+        if (repositorio == null) {
             repositorio = new UsuarioRepositorio();
         }
         return repositorio;
     }
 
-    public LiveData<GenericResponse<Usuario>> login(String email, String contra){
+    public LiveData<GenericResponse<Usuario>> login(String email, String contra) {
         final MutableLiveData<GenericResponse<Usuario>> mld = new MutableLiveData<>();
         this.api.login(email, contra).enqueue(new Callback<GenericResponse<Usuario>>() {
             @Override
@@ -45,7 +45,7 @@ public class UsuarioRepositorio {
         return mld;
     }
 
-    public LiveData<GenericResponse<Usuario>> save (Usuario u){
+    public LiveData<GenericResponse<Usuario>> save(Usuario u) {
         final MutableLiveData<GenericResponse<Usuario>> mld = new MutableLiveData<>();
         this.api.save(u).enqueue(new Callback<GenericResponse<Usuario>>() {
             @Override

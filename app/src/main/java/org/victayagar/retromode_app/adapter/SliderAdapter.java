@@ -18,9 +18,9 @@ import java.util.List;
 import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.entidad.SliderItem;
 
-public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH>{
+public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
     private Context context;
-    private List <SliderItem> mSliderItems = new ArrayList<>();
+    private List<SliderItem> mSliderItems = new ArrayList<>();
 
     public SliderAdapter(Context context) {
         this.context = context;
@@ -58,12 +58,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         this.notifyDataSetChanged();
     }
 
-    protected class SliderAdapterVH extends SliderViewAdapter.ViewHolder{
+    protected class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
         View itemView;
         ImageView imageView;
         TextView textView;
 
-        public SliderAdapterVH(View itemView){
+        public SliderAdapterVH(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_auto_image_slider);
             textView = itemView.findViewById(R.id.tv_auto_image_slider);

@@ -103,18 +103,6 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
             });
         }
 
-        public void toastCorrecto(String texto) {
-            LayoutInflater layoutInflater = LayoutInflater.from(itemView.getContext());
-            View layouView = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) itemView.findViewById(R.id.ll_custom_toast_ok));
-            TextView textView = layouView.findViewById(R.id.txtMensajeToast1);
-            textView.setText(texto);
-
-            Toast toast = new Toast(itemView.getContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0, 200);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layouView);
-            toast.show();
-        }
         private void showMsg(int idProducto) {
             new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Atención!")
                     .setContentText("¿Estás seguro de eliminar este producto de tu carrito de compras?")

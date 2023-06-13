@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.VerInvoiceActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -16,10 +18,11 @@
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_volveratras"
             app:title="Factura"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

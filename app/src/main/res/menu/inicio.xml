@@ -6,8 +6,7 @@
         android:icon="@drawable/ic_carrito"
         android:iconTint="@color/white"
         android:title="Carrito de compra"
-        app:showAsAction="ifRoom">
-    </item>
+        app:showAsAction="ifRoom"></item>
     <item
         android:id="@+id/more"
         android:icon="@drawable/ic_more"

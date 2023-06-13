@@ -43,7 +43,7 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
         return detalles.size();
     }
 
-    public void updateItems(List<DetallePedido> detalles){
+    public void updateItems(List<DetallePedido> detalles) {
         this.detalles.clear();
         this.detalles.addAll(detalles);
         this.notifyDataSetChanged();
@@ -70,7 +70,6 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
             picasso.load(url)
-                    //.networkPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .error(R.drawable.image_not_found)
                     .into(imgProducto);
             txtValueCodDetailPurchases.setText("C000" + Integer.toString(detalle.getPedido().getId()));

@@ -31,7 +31,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/NOTICE.md'
         exclude 'META-INF/LICENSE.md'
     }
@@ -54,10 +54,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
-
     //-----------------Dependencias----------------------------------//
 
-    //*** Lifecycle components
+    // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     annotationProcessor "androidx.lifecycle:lifecycle-common:2.6.1"
 

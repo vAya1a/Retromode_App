@@ -21,14 +21,15 @@ public class DocumentoAlmacenadoRepositorio {
     public DocumentoAlmacenadoRepositorio() {
         this.api = ConfigApi.getDocumentoAlmacenadoApi();
     }
-    public static DocumentoAlmacenadoRepositorio getInstance(){
-        if(repositorio == null){
+
+    public static DocumentoAlmacenadoRepositorio getInstance() {
+        if (repositorio == null) {
             repositorio = new DocumentoAlmacenadoRepositorio();
         }
         return repositorio;
     }
 
-    public LiveData<GenericResponse<DocumentoAlmacenado>> savePhoto(MultipartBody.Part part, RequestBody requestBody){
+    public LiveData<GenericResponse<DocumentoAlmacenado>> savePhoto(MultipartBody.Part part, RequestBody requestBody) {
         final MutableLiveData<GenericResponse<DocumentoAlmacenado>> mld = new MutableLiveData<>();
         this.api.save(part, requestBody).enqueue(new Callback<GenericResponse<DocumentoAlmacenado>>() {
             @Override

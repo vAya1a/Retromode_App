@@ -22,7 +22,7 @@ public class UsuarioViewModel extends AndroidViewModel {
         return this.repositorio.login(email, pass);
     }
 
-    public LiveData<GenericResponse<Usuario>> save(Usuario u){
+    public LiveData<GenericResponse<Usuario>> save(Usuario u) {
         return this.repositorio.save(u);
     }
 }
