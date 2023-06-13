@@ -30,17 +30,16 @@ public class PedidoViewModel extends AndroidViewModel {
     public LiveData<GenericResponse<GenerarPedidoDTO>> guardarPedido(GenerarPedidoDTO dto){
         return repositorio.save(dto);
     }
-    /*public LiveData<GenericResponse<Pedido>> anularPedido(int id){
+    public LiveData<GenericResponse<Pedido>> anularPedido(int id){
         return repositorio.anularPedido(id);
     }
-
     /**
      * Export invoice
      * @param idCli
      * @param idOrden
      * @return
      */
-    /*public LiveData<GenericResponse<ResponseBody>> exportInvoice(int idCli, int idOrden){
+    public LiveData<GenericResponse<ResponseBody>> exportInvoice(int idCli, int idOrden){
         return repositorio.exportInvoice(idCli, idOrden);
-    }*/
+    }
 }

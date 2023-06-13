@@ -503,7 +503,7 @@ public class RegistrarUsuarioActivity extends AppCompatActivity {
     public void warningMessage(String message) {
         new SweetAlertDialog(this,
                 SweetAlertDialog.WARNING_TYPE).setTitleText("Notificación del Sistema")
-                .setContentText(message).setConfirmText("Ok").show();
+                .setContentText(message).setConfirmText("OK").show();
     }
     public void toastIncorrecto(String msg) {
         LayoutInflater layoutInflater = getLayoutInflater();

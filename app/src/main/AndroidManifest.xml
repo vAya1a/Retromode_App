@@ -24,6 +24,9 @@
         android:theme="@style/Theme.Retromode_App"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.VerInvoiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ProductosCarritoActivity"
             android:exported="false" />
         <activity

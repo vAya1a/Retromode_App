@@ -118,17 +118,17 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
         private void showMsg(int idProducto) {
             new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Atención!")
                     .setContentText("¿Estás seguro de eliminar este producto de tu carrito de compras?")
-                    .setCancelText("Cancelar").setConfirmText("Confirmar")
+                    .setCancelText("CANCELAR").setConfirmText("CONFIRMAR")
                     .showCancelButton(true).setCancelClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("Operación cancelada")
-                                .setContentText("No se ha eliminado ningún producto de tu carrito.")
+                                .setContentText("No se ha eliminado ningún producto de tu carrito")
                                 .show();
                     }).setConfirmClickListener(sweetAlertDialog -> {
                         c.eliminarDetalle(idProducto);
                         sweetAlertDialog.dismissWithAnimation();
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Atención!")
-                                .setContentText("El producto acaba de ser eliminado de tu carrito de compras.")
+                                .setContentText("El producto acaba de ser eliminado de tu carrito de compras")
                                 .show();
                     }).show();
         }

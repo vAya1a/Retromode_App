@@ -114,4 +114,9 @@ public class InicioFragment extends Fragment implements Communication {
         getActivity().startActivity(i);
         getActivity().overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
+
+    @Override
+    public void exportInvoice(int idCli, int idOrden, String fileName) {
+
+    }
 }

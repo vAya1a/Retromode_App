@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 
 import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.activity.ui.compras.DetalleMisComprasActivity;
+import org.victayagar.retromode_app.communication.AnularPedidoCommunication;
 import org.victayagar.retromode_app.communication.Communication;
 import org.victayagar.retromode_app.entidad.servicio.dto.PedidoConDetallesDTO;
 import org.victayagar.retromode_app.utils.DateSerializer;
@@ -25,13 +26,17 @@ import java.sql.Time;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.ViewHolder> {
     private final List<PedidoConDetallesDTO> pedidos;
     private final Communication communication;
+    private final AnularPedidoCommunication anularPedidoCommunication;
 
-    public MisComprasAdapter(List<PedidoConDetallesDTO> pedidos, Communication communication) {
+    public MisComprasAdapter(List<PedidoConDetallesDTO> pedidos, Communication communication, AnularPedidoCommunication anularPedidoCommunication) {
         this.pedidos = pedidos;
         this.communication = communication;
+        this.anularPedidoCommunication = anularPedidoCommunication;
     }
 
     @NonNull
@@ -83,6 +88,36 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
                 i.putExtra("detailsPurchases", g.toJson(dto.getDetallePedido()));
                 communication.showDetails(i);//Esto es solo para dar una animación.
             });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    anularPedido(dto.getPedido().getId());
+                    return false;
+                }
+            });
+            btnDescargarFactura.setOnClickListener(view -> {
+                int idCli = dto.getPedido().getCliente().getId();
+                int idOrden = dto.getPedido().getId();
+                String fileName = "Factura" + "00" + dto.getPedido().getId() + ".pdf";
+                communication.exportInvoice(idCli, idOrden, fileName);
+            });
+        }
+        private void anularPedido(int id) {
+            new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Aviso!")
+                    .setContentText("¿Estás seguro de cancelar el pedido solicitado? Una vez cancelado no podrás deshacer los cambios...")
+                    .setCancelText("VOLVER ATRÁS").setConfirmText("CANCELAR PEDIDO")
+                    .showCancelButton(true)
+                    .setConfirmClickListener(sDialog -> {
+                        sDialog.dismissWithAnimation();
+                        new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")
+                                .setContentText(anularPedidoCommunication.anularPedido(id))
+                                .show();
+                    }).setCancelClickListener(sDialog -> {
+                        sDialog.dismissWithAnimation();
+                        new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("¡Aviso!")
+                                .setContentText("No se canceló ningún pedido")
+                                .show();
+                    }).show();
         }
     }
 }
