@@ -32,6 +32,14 @@ import org.victayagar.retromode_app.viewmodel.ProductoViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Esta clase InicioFragment es un Fragment que se utiliza para mostrar la
+pantalla de inicio de la aplicación. Contiene métodos para inicializar las vistas
+y adaptadores, cargar datos y controlar la navegación a otras pantallas. También
+implementa la interfaz Communication para manejar eventos de comunicación con otras partes
+de la aplicación.
+*/
+
 
 public class InicioFragment extends Fragment implements Communication {
     private CategoriaViewModel categoriaViewModel;

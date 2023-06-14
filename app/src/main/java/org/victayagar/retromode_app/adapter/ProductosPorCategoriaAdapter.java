@@ -34,12 +34,14 @@ public class ProductosPorCategoriaAdapter extends RecyclerView.Adapter<Productos
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar el diseño del elemento de la lista
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_productos_por_categoria, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Establecer los datos del elemento en la posición especificada
         holder.setItem(this.listadoProductoPorCategoria.get(position));
     }
 
@@ -49,6 +51,7 @@ public class ProductosPorCategoriaAdapter extends RecyclerView.Adapter<Productos
     }
 
     public void updateItems(List<Producto> productosByCategoria) {
+        // Actualizar la lista de productos por categoría
         this.listadoProductoPorCategoria.clear();
         this.listadoProductoPorCategoria.addAll(productosByCategoria);
         this.notifyDataSetChanged();
@@ -61,6 +64,7 @@ public class ProductosPorCategoriaAdapter extends RecyclerView.Adapter<Productos
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Obtener las referencias de los elementos de la vista del elemento de la lista
             this.imgProductoC = itemView.findViewById(R.id.imgProductoC);
             this.nameProductoC = itemView.findViewById(R.id.nameProductoC);
             this.txtPrecioProductoC = itemView.findViewById(R.id.txtPrecioProductoC);
@@ -70,6 +74,7 @@ public class ProductosPorCategoriaAdapter extends RecyclerView.Adapter<Productos
         public void setItem(final Producto p) {
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + p.getFoto().getFileName();
 
+            // Cargar la imagen del producto utilizando Picasso
             Picasso picasso = new Picasso.Builder(itemView.getContext())
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
@@ -78,16 +83,20 @@ public class ProductosPorCategoriaAdapter extends RecyclerView.Adapter<Productos
                     .into(imgProductoC);
             nameProductoC.setText(p.getNombre());
             txtPrecioProductoC.setText(String.format(Locale.ENGLISH, "€%.2f", p.getPrecio()));
+            // Manejar el evento de clic en el botón de pedir
             btnPedirPC.setOnClickListener(v -> {
+                // Crear un DetallePedido con los datos del producto
                 DetallePedido detallePedido = new DetallePedido();
                 detallePedido.setProducto(p);
                 detallePedido.setCantidad(1);
                 detallePedido.setPrecio(p.getPrecio());
+                // Agregar el producto al carrito y mostrar un mensaje de éxito
                 successMessage(Carrito.agregarProductos(detallePedido));
             });
         }
 
         public void successMessage(String message) {
+            // Mostrar un cuadro de diálogo de éxito después de agregar el producto al carrito
             new SweetAlertDialog(itemView.getContext(),
                     SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Añadido!")
                     .setContentText(message).show();

@@ -18,6 +18,13 @@ import java.util.List;
 import org.victayagar.retromode_app.R;
 import org.victayagar.retromode_app.entidad.SliderItem;
 
+/*
+Este código es un adaptador para un componente de vista de desplazamiento automático
+de imágenes (slider) que muestra una lista de elementos SliderItem. Utiliza Glide para
+cargar las imágenes y muestra el título correspondiente en un TextView. El método
+updateItem permite actualizar la lista de elementos en el slider.
+*/
+
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
     private Context context;
     private List<SliderItem> mSliderItems = new ArrayList<>();
@@ -28,18 +35,21 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
+        // Inflar el diseño del elemento del slider
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_slider_layout_item, null);
         return new SliderAdapterVH(inflate);
     }
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, int position) {
+        // Establecer los datos del elemento en la posición especificada
 
         SliderItem sliderItem = mSliderItems.get(position);
 
         viewHolder.textView.setText(sliderItem.getTitulo());
         viewHolder.textView.setTextSize(16);
         viewHolder.textView.setTextColor(Color.WHITE);
+        // Cargar la imagen utilizando Glide
         Glide.with(viewHolder.itemView)
                 .load(sliderItem.getImagen())
                 .fitCenter()
@@ -53,6 +63,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     }
 
     public void updateItem(List<SliderItem> lista) {
+        // Actualizar la lista de elementos del slider
         mSliderItems.clear();
         mSliderItems.addAll(lista);
         this.notifyDataSetChanged();

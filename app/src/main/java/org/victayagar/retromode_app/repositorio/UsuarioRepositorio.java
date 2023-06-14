@@ -12,6 +12,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*
+El repositorio UsuarioRepositorio proporciona métodos para interactuar
+con la API de usuarios, como iniciar sesión y guardar un usuario.
+Utiliza objetos LiveData y MutableLiveData para proporcionar actualizaciones
+asíncronas a los observadores.
+*/
+
 public class UsuarioRepositorio {
     private static UsuarioRepositorio repositorio;
     private final UsuarioApi api;
@@ -29,6 +36,7 @@ public class UsuarioRepositorio {
 
     public LiveData<GenericResponse<Usuario>> login(String email, String contra) {
         final MutableLiveData<GenericResponse<Usuario>> mld = new MutableLiveData<>();
+        // Llamada a la API para iniciar sesión
         this.api.login(email, contra).enqueue(new Callback<GenericResponse<Usuario>>() {
             @Override
             public void onResponse(Call<GenericResponse<Usuario>> call, Response<GenericResponse<Usuario>> response) {
@@ -47,6 +55,7 @@ public class UsuarioRepositorio {
 
     public LiveData<GenericResponse<Usuario>> save(Usuario u) {
         final MutableLiveData<GenericResponse<Usuario>> mld = new MutableLiveData<>();
+        // Llamada a la API para guardar un usuario
         this.api.save(u).enqueue(new Callback<GenericResponse<Usuario>>() {
             @Override
             public void onResponse(Call<GenericResponse<Usuario>> call, Response<GenericResponse<Usuario>> response) {

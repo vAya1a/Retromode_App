@@ -22,6 +22,20 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/* Esta clase llamada DetalleMisComprasActivity extiende AppCompatActivity y se encarga de mostrar los detalles de las
+compras realizadas. Aquí están las funciones principales:
+
+onCreate(): Es el método de entrada de la actividad, donde se establece el diseño de la interfaz de usuario y se
+llaman a las funciones de inicialización del adaptador y carga de datos.
+init(): Inicializa las vistas y la barra de herramientas, configurando el RecyclerView y el botón de retroceso.
+initAdapter(): Inicializa el adaptador y lo asigna al RecyclerView.
+loadData(): Carga los detalles de las compras a partir de una cadena JSON recibida a través de un intento. Utiliza la
+biblioteca Gson para deserializar la cadena JSON en una lista de objetos DetallePedido y actualiza el adaptador con estos detalles.
+onBackPressed(): Maneja el evento de retroceso (back), finalizando la actividad y animando la transición de salida.
+*/
+
+
 public class DetalleMisComprasActivity extends AppCompatActivity {
     private RecyclerView rcvDetalleMisCompras;
     private DetalleMisComprasAdapter adapter;
@@ -35,6 +49,7 @@ public class DetalleMisComprasActivity extends AppCompatActivity {
         loadData();
     }
 
+    // Inicializa las vistas y la barra de herramientas
     private void init() {
         rcvDetalleMisCompras = findViewById(R.id.rcvDetalleMisCompras);
         rcvDetalleMisCompras.setLayoutManager(new GridLayoutManager(this, 1));
@@ -43,11 +58,13 @@ public class DetalleMisComprasActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> this.onBackPressed());
     }
 
+    // Inicializa el adaptador y lo asigna al RecyclerView
     private void initAdapter() {
         adapter = new DetalleMisComprasAdapter(new ArrayList<>());
         rcvDetalleMisCompras.setAdapter(adapter);
     }
 
+    // Carga los datos de los detalles de las compras
     private void loadData() {
         final String detalleString = this.getIntent().getStringExtra("detailsPurchases");
         if (detalleString != null) {
@@ -63,6 +80,7 @@ public class DetalleMisComprasActivity extends AppCompatActivity {
     }
 
 
+    // Maneja el evento de retroceso (back)
     @Override
     public void onBackPressed() {
         this.finish();

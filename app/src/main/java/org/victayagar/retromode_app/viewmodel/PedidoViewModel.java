@@ -16,6 +16,15 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 
+/*
+El PedidoViewModel es una clase de ViewModel que extiende AndroidViewModel y
+se utiliza para proporcionar datos y funciones relacionadas con pedidos a la
+interfaz de usuario.
+El PedidoViewModel utiliza AndroidViewModel como clase base y recibe una instancia de
+Application en su constructor. Esto permite que el ViewModel tenga una referencia a la
+aplicación y se pueda acceder a ella si es necesario.
+*/
+
 public class PedidoViewModel extends AndroidViewModel {
     private final PedidoRepositorio repositorio;
 

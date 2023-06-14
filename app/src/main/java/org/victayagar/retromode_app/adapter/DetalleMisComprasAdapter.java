@@ -19,6 +19,11 @@ import org.victayagar.retromode_app.entidad.servicio.DetallePedido;
 import java.util.List;
 import java.util.Locale;
 
+/*
+La clase DetalleMisComprasAdapter es un adaptador personalizado para el
+RecyclerView que se utiliza en la pantalla de detalle de compras del usuario.
+*/
+
 public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisComprasAdapter.ViewHolder> {
     private final List<DetallePedido> detalles;
 
@@ -29,12 +34,14 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Infla el diseño del elemento de la lista
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detalle_miscompras, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Asigna los datos del detalle de pedido al ViewHolder en la posición dada
         holder.setItem(this.detalles.get(position));
     }
 
@@ -44,6 +51,7 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
     }
 
     public void updateItems(List<DetallePedido> detalles) {
+        // Actualiza la lista de detalles con una nueva lista y notifica los cambios
         this.detalles.clear();
         this.detalles.addAll(detalles);
         this.notifyDataSetChanged();
@@ -56,6 +64,7 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Inicializa los elementos de la vista del elemento de la lista
             this.imgProducto = itemView.findViewById(R.id.imgProducto);
             this.txtValueCodDetailPurchases = itemView.findViewById(R.id.txtValueCodDetailPurchases);
             this.txtValueProducto = itemView.findViewById(R.id.txtValueProducto);
@@ -66,12 +75,15 @@ public class DetalleMisComprasAdapter extends RecyclerView.Adapter<DetalleMisCom
         public void setItem(final DetallePedido detalle) {
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + detalle.getProducto().getFoto().getFileName();
 
+            // Configuración de Picasso para cargar y mostrar la imagen del producto
             Picasso picasso = new Picasso.Builder(itemView.getContext())
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
             picasso.load(url)
                     .error(R.drawable.image_not_found)
                     .into(imgProducto);
+
+            // Asigna los valores del detalle de pedido a los elementos de la vista
             txtValueCodDetailPurchases.setText("C000" + Integer.toString(detalle.getPedido().getId()));
             txtValueProducto.setText(detalle.getProducto().getNombre());
             txtValueCantidad.setText(Integer.toString(detalle.getCantidad()));

@@ -39,6 +39,7 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
         this.anularPedidoCommunication = anularPedidoCommunication;
     }
 
+    // Métodos de RecyclerView.Adapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,6 +57,7 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
         return this.pedidos.size();
     }
 
+    // Otros métodos
     public void updateItems(List<PedidoConDetallesDTO> pedido) {
         this.pedidos.clear();
         this.pedidos.addAll(pedido);
@@ -74,11 +76,14 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
                     txtValuePrecioTotal = this.itemView.findViewById(R.id.txtValuePrecioTotal),
                     txtValueEstadoPedido = this.itemView.findViewById(R.id.txtValueEstadoPedido);
             final Button btnDescargarFactura = this.itemView.findViewById(R.id.btnDescargarFactura);
+
+            // Colocar los valores en los elementos de la vista
             txtValueRefCompra.setText("C000" + Integer.toString(dto.getPedido().getId()));
             txtValueFechaCompra.setText((dto.getPedido().getFechaCompra()).toString());
             txtValuePrecioTotal.setText(String.format(Locale.ENGLISH, "€%.2f", dto.getPedido().getMonto()));
             txtValueEstadoPedido.setText(dto.getPedido().isAnularPedido() ? "Pedido cancelado" : "Preparando, esperando envio...");
 
+            // Configurar el evento onClick del elemento de la vista
             itemView.setOnClickListener(v -> {
                 final Intent i = new Intent(itemView.getContext(), DetalleMisComprasActivity.class);
                 final Gson g;
@@ -89,6 +94,8 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
                 i.putExtra("detailsPurchases", g.toJson(dto.getDetallePedido()));
                 communication.showDetails(i);//Esto es solo para dar una animación.
             });
+
+            // Configurar el evento onLongClick del elemento de la vista
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -96,6 +103,8 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
                     return false;
                 }
             });
+
+            // Configurar el evento onClick del botón "Descargar Factura"
             btnDescargarFactura.setOnClickListener(view -> {
                 int idCli = dto.getPedido().getCliente().getId();
                 int idOrden = dto.getPedido().getId();
@@ -105,17 +114,20 @@ public class MisComprasAdapter extends RecyclerView.Adapter<MisComprasAdapter.Vi
         }
 
         private void anularPedido(int id) {
+            // Mostrar un cuadro de diálogo de confirmación para cancelar el pedido
             new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Aviso!")
                     .setContentText("¿Estás seguro de cancelar el pedido solicitado? Una vez cancelado no podrás deshacer los cambios...")
                     .setCancelText("VOLVER ATRÁS").setConfirmText("CANCELAR PEDIDO")
                     .showCancelButton(true)
                     .setConfirmClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
+                        // Mostrar un cuadro de diálogo de éxito después de cancelar el pedido
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")
                                 .setContentText(anularPedidoCommunication.anularPedido(id))
                                 .show();
                     }).setCancelClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
+                        // Mostrar un cuadro de diálogo de error si no se canceló ningún pedido
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("¡Aviso!")
                                 .setContentText("No se canceló ningún pedido")
                                 .show();

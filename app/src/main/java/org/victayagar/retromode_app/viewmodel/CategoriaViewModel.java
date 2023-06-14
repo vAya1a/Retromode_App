@@ -12,6 +12,12 @@ import org.victayagar.retromode_app.repositorio.CategoriaRepositorio;
 
 import java.util.List;
 
+/*
+El CategoriaViewModel es una clase de ViewModel que extiende AndroidViewModel
+y se utiliza para proporcionar datos y funciones relacionadas con las categorías
+a la interfaz de usuario
+*/
+
 public class CategoriaViewModel extends AndroidViewModel {
     private final CategoriaRepositorio repositorio;
 

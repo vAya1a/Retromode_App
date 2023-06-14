@@ -37,6 +37,15 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*
+Esta clase se encarga de gestionar la visualización y manipulación
+de los productos en el carrito de compras de la aplicación. Aquí se
+realizan tareas como mostrar la lista de productos en el carrito, permitir
+al usuario finalizar la compra, registrar el pedido en la base de datos y
+mostrar mensajes de notificación al usuario. También se implementa la interfaz
+CarritoCommunication para manejar la eliminación de detalles de pedido individuales del carrito.
+*/
 public class ProductosCarritoActivity extends AppCompatActivity implements CarritoCommunication {
 
     private PedidoViewModel pedidoViewModel;
@@ -57,6 +66,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         initAdapter();
     }
 
+    // Inicializa las vistas y configura el botón de retroceso
     private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
@@ -67,6 +77,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         rcvCarritoCompras = findViewById(R.id.rcvCarritoCompras);
         btnFinalizarCompra = findViewById(R.id.btnFinalizarCompra);
         btnFinalizarCompra.setOnClickListener(v -> {
+            // Verifica si el usuario ha iniciado sesión
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             String pref = preferences.getString("UsuarioJson", "");
             Usuario u = g.fromJson(pref, Usuario.class);
@@ -86,17 +97,20 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         });
     }
 
+    // Inicializa el ViewModel necesario para obtener los datos relacionados con el pedido
     private void initViewModel() {
         final ViewModelProvider vmp = new ViewModelProvider(this);
         this.pedidoViewModel = vmp.get(PedidoViewModel.class);
     }
 
+    // Inicializa el adaptador del RecyclerView y lo configura con los datos del carrito
     private void initAdapter() {
         adapter = new ProductoCarritoAdapter(Carrito.getDetallePedidos(), this);
         rcvCarritoCompras.setLayoutManager(new LinearLayoutManager(this));
         rcvCarritoCompras.setAdapter(adapter);
     }
 
+    // Registra el pedido en la base de datos
     private void registrarPedido(int idC) {
         ArrayList<DetallePedido> detallePedidos = Carrito.getDetallePedidos();
         GenerarPedidoDTO dto = new GenerarPedidoDTO();
@@ -119,6 +133,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
 
     }
 
+    // Calcula el total del pedido sumando el total de cada detalle
     private double getTotalV(List<DetallePedido> detalles) {
         float total = 0;
         for (DetallePedido dp : detalles) {
@@ -127,6 +142,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         return total;
     }
 
+    // Muestra un Toast personalizado de error
     public void toastIncorrecto(String texto) {
         LayoutInflater layoutInflater = getLayoutInflater();
         View layouView = layoutInflater.inflate(R.layout.custom_toast_error, (ViewGroup) findViewById(R.id.ll_custom_toast_error));
@@ -141,6 +157,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
 
     }
 
+    // Muestra un Toast personalizado de éxito
     public void toastCorrecto(String texto) {
         LayoutInflater layoutInflater = getLayoutInflater();
         View layouView = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.ll_custom_toast_ok));
@@ -154,6 +171,7 @@ public class ProductosCarritoActivity extends AppCompatActivity implements Carri
         toast.show();
     }
 
+    // Implementación del método para eliminar un detalle del carrito
     @Override
     public void eliminarDetalle(int idP) {
         Carrito.eliminar(idP);

@@ -43,6 +43,14 @@ import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+/*
+Este código es la implementación de la clase Fragment que muestra la lista
+de compras realizadas por un usuario. Incluye métodos para inicializar las vistas,
+el ViewModel, y el adaptador del RecyclerView. También carga los datos de los pedidos
+del usuario actual y proporciona métodos para mostrar detalles de un pedido, exportar
+una factura y anular un pedido. Además, muestra mensajes de éxito y error.
+*/
+
 
 public class MisComprasFragment extends Fragment implements Communication, AnularPedidoCommunication {
     private ActivityResultLauncher<String> perReqLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
@@ -70,20 +78,24 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         loadData();
     }
 
+    // Inicializa las vistas
     private void init(View v) {
         rcvPedidos = v.findViewById(R.id.rcvMisCompras);
     }
 
+    // Inicializa el ViewModel
     private void initViewModel() {
         pedidoViewModel = new ViewModelProvider(this).get(PedidoViewModel.class);
     }
 
+    // Inicializa el adaptador y lo asigna al RecyclerView
     private void initAdapter() {
         adapter = new MisComprasAdapter(new ArrayList<>(), this, this);
         rcvPedidos.setLayoutManager(new GridLayoutManager(getContext(), 1));
         rcvPedidos.setAdapter(adapter);
     }
 
+    // Carga los datos de los pedidos del usuario actual
     private void loadData() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         final Gson g = new GsonBuilder()
@@ -97,12 +109,14 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         }
     }
 
+    // Muestra los detalles de un pedido
     @Override
     public void showDetails(Intent i) {
         getActivity().startActivity(i);
         getActivity().overridePendingTransition(R.anim.above_in, R.anim.above_out);
     }
 
+    // Exporta una factura
     @Override
     public void exportInvoice(int idCli, int idOrden, String fileName) {
         if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
@@ -122,7 +136,7 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
                             FileOutputStream fileOutputStream = new FileOutputStream(file);
                             fileOutputStream.write(bytes);
                             fileOutputStream.close();
-                            //PREVISUALIZAR EL PDF EN EL APP
+                            // Previsualizar el PDF en la aplicación
                             new MaterialAlertDialogBuilder(requireContext()).setTitle("EXPORTAR FACTURA")
                                     .setMessage("Factura guardada correctamente en la siguiente ubicación: "
                                             + file.getAbsolutePath() + " ¿Deseas visualizarla ahora?")
@@ -153,6 +167,7 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         }
     }
 
+    // Anula un pedido
     @Override
     public String anularPedido(int id) {
         this.pedidoViewModel.anularPedido(id).observe(getViewLifecycleOwner(), response -> {
@@ -163,12 +178,14 @@ public class MisComprasFragment extends Fragment implements Communication, Anula
         return "El pedido ha sido cancelado";
     }
 
+    // Muestra un mensaje de éxito
     public void successMessage(String message) {
         new SweetAlertDialog(requireContext(),
                 SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")
                 .setContentText(message).show();
     }
 
+    // Muestra un mensaje de error
     public void errorMessage(String message) {
         new SweetAlertDialog(requireContext(),
                 SweetAlertDialog.ERROR_TYPE).setTitleText("¡Ups!... ocurrió un error")

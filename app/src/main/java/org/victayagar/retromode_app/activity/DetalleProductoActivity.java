@@ -27,6 +27,18 @@ import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+/*En esta clase DetalleProductoActivity, se realiza lo siguiente:
+
+Se importan las clases necesarias y se definen las variables y vistas necesarias para la actividad.
+Se utiliza el patrón de diseño del adaptador Gson para serializar y deserializar objetos Date y Time.
+La clase extiende AppCompatActivity y anula el método onCreate para configurar y cargar la vista de la actividad.
+El método init se encarga de configurar la barra de herramientas y de inicializar las vistas.
+El método loadData se encarga de obtener los detalles del producto de la intención y de mostrar los datos en las vistas correspondientes.
+Se utiliza la biblioteca Picasso para cargar la imagen del producto desde una URL en imgProductoDetalle.
+El botón btnAgregarCarrito agrega un producto al carrito de compras al hacer clic en él.
+El método successMessage muestra un mensaje de éxito utilizando SweetAlertDialog.
+*/
+
 public class DetalleProductoActivity extends AppCompatActivity {
 
     private ImageView imgProductoDetalle;
@@ -47,12 +59,15 @@ public class DetalleProductoActivity extends AppCompatActivity {
     }
 
     private void init() {
+        // Configuración de la barra de herramientas
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
         toolbar.setNavigationOnClickListener(v -> {
             this.finish();
             this.overridePendingTransition(R.anim.rigth_in, R.anim.rigth_out);
         });
+
+        // Inicialización de vistas
         this.imgProductoDetalle = findViewById(R.id.imgProductoDetalle);
         this.btnAgregarCarrito = findViewById(R.id.btnAgregarCarrito);
         this.tvNameProductoDetalle = findViewById(R.id.tvNameProductoDetalle);
@@ -61,12 +76,16 @@ public class DetalleProductoActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        // Obtener los detalles del producto de la intención
         final String detalleString = this.getIntent().getStringExtra("detalleProducto");
         if (detalleString != null) {
             producto = g.fromJson(detalleString, Producto.class);
+
+            // Establecer los datos del producto en las vistas
             this.tvNameProductoDetalle.setText(producto.getNombre());
             this.tvPrecioProductoDetalle.setText(String.format(Locale.ENGLISH, "€%.2f", producto.getPrecio()));
             this.tvDescripcionProductoDetalle.setText(producto.getDescripcionProducto());
+            // Cargar la imagen del producto utilizando Picasso
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + producto.getFoto().getFileName();
 
             Picasso picasso = new Picasso.Builder(this)
@@ -88,6 +107,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         });
     }
 
+    // Método para mostrar un mensaje de éxito utilizando SweetAlertDialog
     public void successMessage(String message) {
         new SweetAlertDialog(this,
                 SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Hecho!")

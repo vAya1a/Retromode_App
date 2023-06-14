@@ -36,6 +36,28 @@ import java.sql.Time;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
+/*
+En esta clase InicioActivity, se realiza lo siguiente:
+
+-Se importan las clases necesarias y se definen las variables y vistas necesarias para la actividad.
+-La clase extiende AppCompatActivity y anula los métodos necesarios para configurar y cargar la vista de la actividad.
+-Se utiliza el enlace de datos (DataBinding) para inflar y establecer la vista principal de la actividad (ActivityInicioBinding).
+-Se configura la barra de herramientas (Toolbar) y el cajón de navegación (DrawerLayout y NavigationView).
+-Se utiliza el componente NavController para manejar la navegación entre los fragmentos utilizando la biblioteca
+de navegación de Android (Navigation y NavigationUI).
+-Se implementan los métodos onCreateOptionsMenu y onOptionsItemSelected para configurar y manejar las
+acciones del menú de opciones.
+-El método mostrarCarrito inicia la actividad ProductosCarritoActivity al hacer clic en la opción del
+carrito de compras en el menú.
+-El método onStart se llama cuando la actividad se vuelve visible y se utiliza para cargar los datos del
+usuario desde las preferencias compartidas y mostrarlos en las vistas correspondientes.
+-El método loadData obtiene los datos del usuario serializados en formato JSON desde las preferencias compartidas,
+los deserializa utilizando Gson y los muestra en las vistas correspondientes en el cajón de navegación.
+-El método logout se encarga de cerrar sesión, eliminando los datos del usuario de las preferencias compartidas
+y finalizando la actividad actual.
+-El método onSupportNavigateUp se utiliza para habilitar la navegación hacia arriba en la barra de acciones.
+*/
+
 public class InicioActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -52,8 +74,8 @@ public class InicioActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // Pasando cada ID de menú como un conjunto de IDs porque cada
+        // menú debe considerarse como destinos de nivel superior.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio, R.id.nav_miscompras, R.id.nav_configuracion)
                 .setDrawerLayout(drawer)
@@ -65,7 +87,7 @@ public class InicioActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflar el menú; esto agrega elementos a la barra de acciones si está presente.
         getMenuInflater().inflate(R.menu.inicio, menu);
         return true;
     }

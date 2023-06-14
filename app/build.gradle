@@ -57,49 +57,111 @@ dependencies {
     //-----------------Dependencias----------------------------------//
 
     // Lifecycle components
+    /*
+    Estas bibliotecas proporcionan componentes del ciclo de vida de Android,
+    como LiveData y ViewModel, que facilitan la creación de aplicaciones basadas en
+    arquitectura de componentes.
+    */
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     annotationProcessor "androidx.lifecycle:lifecycle-common:2.6.1"
 
     // Retrofit
+    /*
+    Retrofit es una biblioteca de cliente HTTP que simplifica el consumo de
+    servicios web RESTful al convertir las API en interfaces Java. Se utiliza para
+    realizar solicitudes HTTP y recibir las respuestas correspondientes.
+    Proporciona un convertidor para Retrofit que permite convertir automáticamente
+    los objetos JSON recibidos en respuestas HTTP a objetos Java utilizando la biblioteca Gson.
+    */
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
     // Dagger
+    /*
+    Dagger es un framework de inyección de dependencias que simplifica la
+    gestión de dependencias en una aplicación. Esta biblioteca específica
+    proporciona soporte para la inyección de dependencias en componentes de Android.
+    */
     implementation "com.google.dagger:dagger-android:2.35.1"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.33"
 
     // Picasso
+    /*
+    Picasso es una biblioteca de carga y visualización de imágenes que facilita
+    la carga de imágenes desde diferentes fuentes (URL, recursos, almacenamiento
+    local, etc.) y su visualización en ImageViews.
+    */
     implementation "com.squareup.picasso:picasso:2.71828"
 
     // Stetho
+    /*
+     Stetho es una biblioteca de depuración para aplicaciones Android que
+     permite inspeccionar y depurar aplicaciones utilizando la consola de Chrome.
+     Proporciona herramientas para inspeccionar la jerarquía de vistas, ver y modificar
+     la base de datos SQLite, etc.
+    */
     implementation "com.facebook.stetho:stetho:1.5.1"
     implementation "com.facebook.stetho:stetho-okhttp3:1.5.1"
 
     //Libreria Spinner
+    /*
+     Esta biblioteca ofrece una implementación personalizada de un spinner
+     (selector) de estilo Material Design para Android.
+    */
     implementation 'com.github.ganfra:material-spinner:2.0.0'
 
     //Java Mail
+    /*
+    Estas bibliotecas son parte de JavaMail, una biblioteca de Java
+    que proporciona capacidades para enviar y recibir correos electrónicos.
+    Se utilizan para integrar funcionalidades de correo electrónico en la aplicación Android.
+    */
     implementation 'com.sun.mail:android-mail:1.6.6'
     implementation 'com.sun.mail:android-activation:1.6.6'
 
     //Google Maps
+    /*
+    Estas bibliotecas son parte de Google Play Services y proporcionan funcionalidades
+    para integrar mapas y lugares de Google en una aplicación Android.
+    */
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
 
     //Sweet Alert
+    /*
+    Esta biblioteca proporciona diálogos y alertas personalizadas con una
+    apariencia elegante y animaciones para mejorar la experiencia del usuario.
+    */
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 
     //ImagenView Circle
+    /*
+    Esta biblioteca ofrece una ImageView personalizada que muestra imágenes
+    redondeadas en lugar de la forma rectangular estándar.
+    */
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Carrusel
+    /*
+    Esta biblioteca permite agregar un carrusel de imágenes a una aplicación Android,
+    lo que facilita la visualización y navegación de varias imágenes de manera automática o manual.
+    */
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
     //Glide
+    /*
+    Glide es una biblioteca de carga y visualización de imágenes similar a Picasso,
+    pero con capacidades adicionales, como cargar imágenes en miniatura, decodificación eficiente
+    de imágenes, caching, etc.
+    */
     implementation "com.github.bumptech.glide:glide:4.12.0"
 
     //PDF VIEWER
+    /*
+    Esta biblioteca proporciona una vista de PDF personalizada para Android,
+    lo que permite la visualización de archivos PDF en una aplicación.
+    */
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
 
 

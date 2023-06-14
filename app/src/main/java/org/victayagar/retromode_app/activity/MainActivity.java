@@ -36,6 +36,12 @@ import java.sql.Time;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+/*
+la clase MainActivity se encarga de gestionar la pantalla de inicio de sesión
+de la aplicación, incluyendo la validación de credenciales, el inicio de sesión
+del usuario y la navegación a otras actividades.
+*/
+
 public class MainActivity extends AppCompatActivity {
 
     VideoView videoLogin;
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         videoLogin = findViewById(R.id.videoLogin);
 
+        // Configurar el video de inicio de sesión
         String ruta = "android.resource://org.victayagar.retromode_app/" + R.raw.login;
         Uri u = Uri.parse(ruta);
         videoLogin.setVideoURI(u);
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViewModel() {
+        // Inicializar el ViewModel
         viewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
     }
 
@@ -74,13 +82,16 @@ public class MainActivity extends AppCompatActivity {
         txtInputPassword = findViewById(R.id.txtInputPassword);
         txtNuevoUsuario = findViewById(R.id.txtNuevoUsuario);
         btnLogin = findViewById(R.id.btnLogin);
+        // Configurar el evento click del botón de inicio de sesión
         btnLogin.setOnClickListener(v -> {
             try {
                 if (validar()) {
+                    // Realizar el inicio de sesión
                     viewModel.login(editarMail.getText().toString(), editarPassword.getText().toString()).observe(this, response -> {
                         if (response.getRpta() == 1) {
                             toastCorrecto(response.getMessage());
                             Usuario u = response.getBody();
+                            // Guardar el objeto Usuario en SharedPreferences
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                             SharedPreferences.Editor editor = preferences.edit();
                             final Gson g = new GsonBuilder()
@@ -92,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.apply();
                             editarMail.setText("");
                             editarPassword.setText("");
+                            // Abrir la actividad InicioActivity
                             startActivity(new Intent(this, InicioActivity.class));
                         } else {
                             toastIncorrecto("Datos inválidos");
@@ -104,11 +116,13 @@ public class MainActivity extends AppCompatActivity {
                 toastIncorrecto("Se ha producido un error al intentar iniciar sesión : " + e.getMessage());
             }
         });
+        // Configurar el evento click del enlace "Nuevo usuario"
         txtNuevoUsuario.setOnClickListener(v -> {
             Intent i = new Intent(this, RegistrarUsuarioActivity.class);
             startActivity(i);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
         });
+        // Configurar el evento click del enlace "Nuevo usuario"
         editarMail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toastCorrecto(String msg) {
+        // Mostrar un Toast personalizado de éxito
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.custom_toast_ok, (ViewGroup) findViewById(R.id.ll_custom_toast_ok));
         TextView txtMensaje = view.findViewById(R.id.txtMensajeToast1);
@@ -157,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toastIncorrecto(String msg) {
+        // Mostrar un Toast personalizado de error
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.custom_toast_error, (ViewGroup) findViewById(R.id.ll_custom_toast_error));
         TextView txtMensaje = view.findViewById(R.id.txtMensajeToast2);
@@ -170,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toastWarning(String msg) {
+        // Mostrar un Toast personalizado de advertencia
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.custom_toast_warning, (ViewGroup) findViewById(R.id.ll_custom_toast_warning));
         TextView txtMensaje = view.findViewById(R.id.txtMensajeToast3);
@@ -183,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validar() {
+        // Validar los campos de correo y contraseña
         boolean retorno = true;
         String usuario, password;
         usuario = editarMail.getText().toString();
@@ -203,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // Mostrar un diálogo de confirmación al presionar el botón de retroceso
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE).setTitleText("Has pulsado atrás")
                 .setContentText("¿Estás seguro de que quieres salir?")
                 .setConfirmText("Cerrar").setCancelText("Cancelar")

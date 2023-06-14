@@ -10,6 +10,11 @@ import org.victayagar.retromode_app.entidad.GenericResponse;
 import org.victayagar.retromode_app.entidad.servicio.Cliente;
 import org.victayagar.retromode_app.repositorio.ClienteRepositorio;
 
+/*
+El ClienteViewModel es una clase de ViewModel que extiende AndroidViewModel y se utiliza
+para proporcionar datos y funciones relacionadas con los clientes a la interfaz de usuario
+*/
+
 public class ClienteViewModel extends AndroidViewModel {
     private final ClienteRepositorio repositorio;
 

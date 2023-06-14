@@ -16,6 +16,12 @@ import org.victayagar.retromode_app.viewmodel.ProductoViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ La clase ListarProductosPorCategoriaActivity se encarga de
+ mostrar una lista de productos filtrados por categoría, utilizando un RecyclerView
+ y un adaptador personalizado.
+ */
+
 public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
     private ProductoViewModel productoViewModel;
     private ProductosPorCategoriaAdapter adapter;
@@ -26,12 +32,13 @@ public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_productos_por_categoria);
-        init();
-        initViewModel();
-        initAdapter();
-        loadData();
+        init(); // Inicializa la actividad
+        initViewModel(); // Inicializa el ViewModel para obtener los datos de los productos
+        initAdapter(); // Inicializa el adaptador y configura el RecyclerView
+        loadData(); // Carga los datos de los productos por categoría
     }
 
+    // Inicializa la barra de herramientas y su comportamiento de navegación
     private void init() {
         Toolbar toolbar = this.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_volveratras);
@@ -41,11 +48,13 @@ public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
         });
     }
 
+    // Inicializa el ViewModel necesario para obtener los datos de los productos por categoría
     private void initViewModel() {
         final ViewModelProvider vmp = new ViewModelProvider(this);
         this.productoViewModel = vmp.get(ProductoViewModel.class);
     }
 
+    // Inicializa el adaptador y configura el RecyclerView para mostrar la lista de productos
     private void initAdapter() {
         adapter = new ProductosPorCategoriaAdapter(productos);
         rcvProductoPorCategoria = findViewById(R.id.rcvProductosPorCategoria);
@@ -53,8 +62,9 @@ public class ListarProductosPorCategoriaActivity extends AppCompatActivity {
         rcvProductoPorCategoria.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Obtiene los datos de los productos por categoría y los carga en el adaptador
     private void loadData() {
-        int idC = getIntent().getIntExtra("idC", 0); //Recibimos el idCategoria
+        int idC = getIntent().getIntExtra("idC", 0); // Recibe el ID de la categoría seleccionada
         productoViewModel.listarProductosPorCategoria(idC).observe(this, response -> adapter.updateItems(response.getBody()));
     }
 }

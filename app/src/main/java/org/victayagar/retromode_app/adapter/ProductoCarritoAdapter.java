@@ -38,12 +38,14 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar el diseño del elemento de la lista
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_productos_carrito, parent, false);
         return new ViewHolder(v, this.c);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Establecer los datos del elemento en la posición especificada
         holder.setItem(this.detalles.get(position));
     }
 
@@ -61,6 +63,7 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
         public ViewHolder(@NonNull View itemView, CarritoCommunication c) {
             super(itemView);
             this.c = c;
+            // Obtener las referencias de los elementos de la vista del elemento de la lista
             this.imgProductoDC = itemView.findViewById(R.id.imgProductoDC);
             this.btnEliminarPCarrito = itemView.findViewById(R.id.btnEliminarPCarrito);
             this.btnAdd = itemView.findViewById(R.id.btnAdd);
@@ -71,11 +74,14 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
         }
 
         public void setItem(final DetallePedido dp) {
+            // Establecer los valores de los elementos de la vista con los datos del DetallePedido
             this.tvNombreProductoDC.setText(dp.getProducto().getNombre());
             this.tvPrecioPDC.setText(String.format(Locale.ENGLISH, "€%.2f", dp.getPrecio()));
             int cant = dp.getCantidad();
             this.edtCantidad.setText(Integer.toString(cant));
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + dp.getProducto().getFoto().getFileName();
+
+            // Cargar la imagen del producto utilizando Picasso
             Picasso picasso = new Picasso.Builder(itemView.getContext())
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
@@ -90,8 +96,11 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
                     ProductoCarritoAdapter.this.notifyDataSetChanged();
                 }
             });
+
+            // Manejar el evento de clic en el botón de disminuir
             btnDecrease.setOnClickListener(v -> {
                 if (dp.getCantidad() != 1) {
+                    // Si el valor de la cantidad no es 1, disminuir en 1
                     dp.removeOne();
                     ProductoCarritoAdapter.this.notifyDataSetChanged();
                 }
@@ -104,17 +113,21 @@ public class ProductoCarritoAdapter extends RecyclerView.Adapter<ProductoCarrito
         }
 
         private void showMsg(int idProducto) {
+            // Mostrar un cuadro de diálogo de confirmación para eliminar el producto del carrito
             new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.WARNING_TYPE).setTitleText("¡Atención!")
                     .setContentText("¿Estás seguro de eliminar este producto de tu carrito de compras?")
                     .setCancelText("CANCELAR").setConfirmText("CONFIRMAR")
                     .showCancelButton(true).setCancelClickListener(sDialog -> {
                         sDialog.dismissWithAnimation();
+                        // Mostrar un cuadro de diálogo de error si se cancela la operación
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.ERROR_TYPE).setTitleText("Operación cancelada")
                                 .setContentText("No se ha eliminado ningún producto de tu carrito")
                                 .show();
                     }).setConfirmClickListener(sweetAlertDialog -> {
+                        // Eliminar el detalle del carrito utilizando la comunicación del carrito
                         c.eliminarDetalle(idProducto);
                         sweetAlertDialog.dismissWithAnimation();
+                        // Mostrar un cuadro de diálogo de éxito después de eliminar el producto
                         new SweetAlertDialog(itemView.getContext(), SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Atención!")
                                 .setContentText("El producto acaba de ser eliminado de tu carrito de compras")
                                 .show();

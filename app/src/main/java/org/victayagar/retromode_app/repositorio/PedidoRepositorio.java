@@ -23,6 +23,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*
+El repositorio PedidoRepositorio proporciona métodos para interactuar con la API
+de pedidos, como listar pedidos por cliente, guardar un pedido con detalles, anular
+un pedido y exportar una factura en formato PDF. Utiliza objetos LiveData y
+MutableLiveData para proporcionar actualizaciones asíncronas a los observadores.
+*/
+
 public class PedidoRepositorio {
     private final PedidoApi api;
     private static PedidoRepositorio repositorio;
@@ -40,6 +47,7 @@ public class PedidoRepositorio {
 
     public LiveData<GenericResponse<List<PedidoConDetallesDTO>>> listarPedidosPorCliente(int idCli) {
         final MutableLiveData<GenericResponse<List<PedidoConDetallesDTO>>> mld = new MutableLiveData<>();
+        // Llamada a la API para obtener la lista de pedidos por cliente
         this.api.listarPedidosPorCliente(idCli).enqueue(new Callback<GenericResponse<List<PedidoConDetallesDTO>>>() {
             @Override
             public void onResponse(Call<GenericResponse<List<PedidoConDetallesDTO>>> call, Response<GenericResponse<List<PedidoConDetallesDTO>>> response) {
@@ -59,6 +67,7 @@ public class PedidoRepositorio {
     //GUARDAR PEDIDO CON DETALLES
     public LiveData<GenericResponse<GenerarPedidoDTO>> save(GenerarPedidoDTO dto) {
         MutableLiveData<GenericResponse<GenerarPedidoDTO>> data = new MutableLiveData<>();
+        // Llamada a la API para guardar un pedido con detalles
         api.guardarPedido(dto).enqueue(new Callback<GenericResponse<GenerarPedidoDTO>>() {
             @Override
             public void onResponse(Call<GenericResponse<GenerarPedidoDTO>> call, Response<GenericResponse<GenerarPedidoDTO>> response) {
@@ -79,6 +88,7 @@ public class PedidoRepositorio {
     //ANULAR PEDIDO
     public LiveData<GenericResponse<Pedido>> anularPedido(int id) {
         MutableLiveData<GenericResponse<Pedido>> mld = new MutableLiveData<>();
+        // Llamada a la API para anular un pedido
         this.api.anularPedido(id).enqueue(new Callback<GenericResponse<Pedido>>() {
             @Override
             public void onResponse(Call<GenericResponse<Pedido>> call, Response<GenericResponse<Pedido>> response) {
@@ -104,6 +114,7 @@ public class PedidoRepositorio {
      */
     public LiveData<GenericResponse<ResponseBody>> exportInvoice(int idCli, int idOrden) {
         MutableLiveData<GenericResponse<ResponseBody>> mld = new MutableLiveData<>();
+        // Llamada a la API para exportar la factura en formato PDF
         this.api.exportInvoicePDF(idCli, idOrden).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

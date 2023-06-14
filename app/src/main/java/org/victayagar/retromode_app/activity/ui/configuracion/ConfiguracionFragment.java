@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import org.victayagar.retromode_app.R;
 
-
+/*
+Esta clase es un simple Fragment que muestra la vista correspondiente a la
+configuración de la aplicación. Infla el diseño de la vista desde el archivo XML fragment_configuracion.xml
+y devuelve la vista inflada
+*/
 public class ConfiguracionFragment extends Fragment {
 
 

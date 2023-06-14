@@ -46,12 +46,14 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar el diseño del elemento de la lista
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_productos, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Establecer los datos del elemento en la posición especificada
         holder.setItem(this.productos.get(position));
     }
 
@@ -61,6 +63,7 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
     }
 
     public void updateItems(List<Producto> producto) {
+        // Actualizar la lista de productos recomendados
         this.productos.clear();
         this.productos.addAll(producto);
         this.notifyDataSetChanged();
@@ -79,6 +82,7 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
 
             String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/" + p.getFoto().getFileName();
 
+            // Cargar la imagen del producto utilizando Picasso
             Picasso picasso = new Picasso.Builder(itemView.getContext())
                     .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                     .build();
@@ -86,7 +90,10 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
                     .error(R.drawable.image_not_found)
                     .into(imgProducto);
             nameProducto.setText(p.getNombre());
+
+            // Manejar el evento de clic en el botón de pedir
             btnPedir.setOnClickListener(v -> {
+                // Crear un DetallePedido con los datos del producto
                 DetallePedido detallePedido = new DetallePedido();
                 detallePedido.setProducto(p);
                 detallePedido.setCantidad(1);
@@ -95,6 +102,7 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
             });
             //Inicializar la vista del detalle del producto
             itemView.setOnClickListener(v -> {
+                // Crear un Intent para mostrar el detalle del producto
                 final Intent i = new Intent(itemView.getContext(), DetalleProductoActivity.class);
                 final Gson g = new GsonBuilder()
                         .registerTypeAdapter(Date.class, new DateSerializer())
@@ -107,6 +115,7 @@ public class ProductosRecomendadosAdapter extends RecyclerView.Adapter<Productos
         }
 
         public void successMessage(String message) {
+            // Mostrar un cuadro de diálogo de éxito después de agregar el producto al carrito
             new SweetAlertDialog(itemView.getContext(),
                     SweetAlertDialog.SUCCESS_TYPE).setTitleText("¡Añadido!")
                     .setContentText(message).show();

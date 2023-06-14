@@ -22,6 +22,14 @@ import org.victayagar.retromode_app.entidad.servicio.Categoria;
 
 import java.util.List;
 
+/*
+Esta clase extiende ArrayAdapter y se utiliza para mostrar las categorías en una vista de lista.
+Cada elemento de la lista muestra una imagen de la categoría y su nombre. Al hacer clic en un elemento
+de la lista, se inicia la actividad ListarProductosPorCategoriaActivity con el ID de la categoría
+como dato extra en el intent.
+*/
+
+
 public class CategoriaAdapter extends ArrayAdapter<Categoria> {
     private final String url = ConfigApi.baseUrlE + "/api/documento-almacenado/download/";
 
@@ -39,16 +47,18 @@ public class CategoriaAdapter extends ArrayAdapter<Categoria> {
         ImageView imgCategoria = convertView.findViewById(R.id.imgCategoria);
         TextView txtNombreCategoria = convertView.findViewById(R.id.txtNombreCategoria);
 
+        // Configuración de Picasso para cargar y mostrar la imagen de la categoría
         Picasso picasso = new Picasso.Builder(convertView.getContext())
                 .downloader(new OkHttp3Downloader(ConfigApi.getClient()))
                 .build();
-        picasso.load(url + c.getFoto().getFileName())
-                .error(R.drawable.image_not_found)
-                .into(imgCategoria);
-        txtNombreCategoria.setText(c.getNombre());
+        picasso.load(url + c.getFoto().getFileName()) // Carga la imagen desde la URL completa
+                .error(R.drawable.image_not_found) // Muestra esta imagen en caso de error de carga
+                .into(imgCategoria); // Asocia la imagen al ImageView
+        txtNombreCategoria.setText(c.getNombre()); // Muestra el nombre de la categoría en el TextView
         convertView.setOnClickListener(v -> {
+            // Inicia la actividad ListarProductosPorCategoriaActivity al hacer clic en el elemento de la lista
             Intent i = new Intent(getContext(), ListarProductosPorCategoriaActivity.class);
-            i.putExtra("idC", c.getId());//OBTENEMOS EL ID DE LA CATEGORIA
+            i.putExtra("idC", c.getId());// Envía el ID de la categoría como dato extra en el intent
             getContext().startActivity(i);
         });
         return convertView;

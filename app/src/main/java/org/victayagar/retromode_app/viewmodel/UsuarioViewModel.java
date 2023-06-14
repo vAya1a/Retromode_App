@@ -1,5 +1,13 @@
 package org.victayagar.retromode_app.viewmodel;
 
+/*
+El UsuarioViewModel es una clase de ViewModel que extiende AndroidViewModel y se
+utiliza para proporcionar datos y funciones relacionadas con usuarios a la interfaz de usuario.
+El UsuarioViewModel utiliza AndroidViewModel como clase base y recibe una instancia de Application
+en su constructor. Esto permite que el ViewModel tenga una referencia a la aplicación y se
+pueda acceder a ella si es necesario.
+*/
+
 import android.app.Application;
 
 import androidx.annotation.NonNull;
