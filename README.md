@@ -1,4 +1,4 @@
-<em> Para acceder a la parte del servicio de este proyecto, puedes visitar el repositorio en [este enlace](https://github.com/vAya1a/Retromode_Servicio). Allí encontrarás toda la información y el código relacionado con la parte de la aplicación. </em>
+<em> Para acceder a la parte del servicio de este proyecto, puedes visitar el repositorio en [este enlace](https://github.com/vAya1a/Retromode_Servicio). Allí encontrarás toda la información y el código relacionado con la parte del servicio. </em>
 
 # Aplicación de Plataforma de Venta de Ropa
 
